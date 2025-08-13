@@ -344,3 +344,26 @@
 })();
 
 
+/* ==== Download file from data-download ==== */
+(function () {
+  document.addEventListener('click', function (e) {
+    const a = e.target.closest('a');
+    if (!a) return;
+
+    const file = a.getAttribute('data-download');
+    if (!file) return; // не наша кнопка
+
+    // блокируем обычный переход
+    e.preventDefault();
+
+    // создаём временную ссылку для скачивания
+    const link = document.createElement('a');
+    link.href = file;
+    link.download = file.split('/').pop(); // имя файла
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  });
+})();
+
+
