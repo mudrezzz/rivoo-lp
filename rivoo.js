@@ -301,3 +301,18 @@
   window.addEventListener('message', onMessage);
 })();
 
+
+/* ==== Open video buttons in new tab ==== */
+(function(){
+  const videoButtons = document.querySelectorAll('.btn-video');
+  videoButtons.forEach(btn => {
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      const url = this.getAttribute('data-video-url');
+      if (url) {
+        window.open(url, '_blank', 'noopener');
+      }
+    });
+  });
+})();
+
