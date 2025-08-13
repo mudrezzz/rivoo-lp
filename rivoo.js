@@ -177,3 +177,127 @@
 
   io.observe(section);
 })();
+
+/* ==========================================================================
+   DEMO MODAL — Yandex Forms embed
+   - Открытие по клику на: a[href="#demo"], .hd-cta, [data-open-demo]
+   - Закрытие по кнопке [data-close-demo], клику по фоне, ESC
+   - Фокус-менеджмент и лёгкая доступность
+   - Снятие "loading" с обёртки iframe после загрузки формы
+   ========================================================================== */
+(function () {
+  const modal   = document.getElementById('demo-modal');
+  const overlay = document.getElementById('demo-modal-overlay');
+  if (!modal || !overlay) return;
+
+  // триггеры открытия/закрытия
+  const openers = Array.from(document.querySelectorAll('a[href="#demo"], .hd-cta, [data-open-demo]'));
+  const closers = Array.from(modal.querySelectorAll('[data-close-demo]'));
+
+  // элементы внутри модалки
+  const panel  = modal.querySelector('.panel');
+  const wrap   = modal.querySelector('.iframe-wrap'); // для прелоадера
+  const iframe = modal.querySelector('#ya-form');
+
+  // состояние фокуса (для возврата)
+  let lastFocused = null;
+
+  // селектор фокусируемых элементов
+  const FOCUSABLE = 'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+  function openModal(e) {
+    if (e) e.preventDefault();
+    lastFocused = document.activeElement;
+
+    // показать
+    modal.hidden = false;
+    overlay.hidden = false;
+    //modal.style.display = 'flex';
+    //overlay.style.display = 'block';
+    modal.classList.add('is-open');
+    document.body.classList.add('modal-open');
+
+    // фокус на первый доступный элемент
+    const first = modal.querySelector(FOCUSABLE);
+    first && first.focus();
+
+    // слушатели
+    document.addEventListener('keydown', onKeyDown, true);
+    document.addEventListener('click', onOutsideClick, true);
+  }
+
+  function closeModal() {
+    // скрыть
+    modal.hidden = true;
+    overlay.hidden = true;
+    //modal.style.display = 'none';
+    //overlay.style.display = 'none';
+    modal.classList.remove('is-open');
+    document.body.classList.remove('modal-open');
+
+    // снять слушатели
+    document.removeEventListener('keydown', onKeyDown, true);
+    document.removeEventListener('click', onOutsideClick, true);
+
+    // вернуть фокус
+    if (lastFocused && typeof lastFocused.focus === 'function') {
+      lastFocused.focus();
+    }
+  }
+
+  function onKeyDown(ev) {
+    // ESC закрывает
+    if (ev.key === 'Escape') {
+      ev.preventDefault();
+      closeModal();
+      return;
+    }
+    // trap TAB внутри модалки
+    if (ev.key === 'Tab') {
+      const nodes = Array.from(modal.querySelectorAll(FOCUSABLE)).filter(el => el.offsetParent !== null);
+      if (!nodes.length) return;
+      const first = nodes[0];
+      const last  = nodes[nodes.length - 1];
+      if (ev.shiftKey && document.activeElement === first) {
+        ev.preventDefault();
+        last.focus();
+      } else if (!ev.shiftKey && document.activeElement === last) {
+        ev.preventDefault();
+        first.focus();
+      }
+    }
+  }
+
+  function onOutsideClick(ev) {
+    // клик по фону/оверлею — закрыть
+    const inPanel  = ev.target.closest('.panel');
+    const isOpener = ev.target.closest('a[href="#demo"], .hd-cta, [data-open-demo]');
+    if (!inPanel && !isOpener && modal.style.display === 'flex') {
+      closeModal();
+    }
+  }
+
+  // Убрать состояние "loading" после загрузки формы
+  function onIframeLoad() {
+    wrap && wrap.classList.remove('loading');
+  }
+
+  // (опционально) поддержка авто-ресайза через postMessage от формы
+  function onMessage(e) {
+    try {
+      if (!e || !e.data) return;
+      if (typeof e.data === 'object' && e.data.type === 'ya-form' && e.data.height && iframe) {
+        const h = Math.max(520, Math.min(e.data.height, 1400));
+        iframe.style.minHeight = h + 'px';
+      }
+    } catch (_) {}
+  }
+
+  // навешиваем обработчики
+  openers.forEach(el => el.addEventListener('click', openModal));
+  closers.forEach(el => el.addEventListener('click', closeModal));
+  overlay.addEventListener('click', closeModal);
+  iframe && iframe.addEventListener('load', onIframeLoad);
+  window.addEventListener('message', onMessage);
+})();
+

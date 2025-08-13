@@ -1096,3 +1096,44 @@ footer .footer-bottom{
   }
 }
 
+
+/* --- Modal hardening / centering --- */
+#demo-modal-overlay{
+  position: fixed;
+  top:0; right:0; bottom:0; left:0; /* fallback вместо inset */
+  background: rgba(0,0,0,.55);
+  display: none;
+  z-index: 990;           /* выше шапки */
+  backdrop-filter: blur(2px);
+}
+
+#demo-modal{
+  position: fixed;
+  top:0; right:0; bottom:0; left:0; /* fallback вместо inset */
+  display: none;            /* по умолчанию скрыто */
+  z-index: 1000;            /* выше overlay */
+  padding: 24px;
+  /* Надёжное центрирование независимо от сторонних стилей */
+  display: none;
+}
+
+#demo-modal.is-open{
+  display: grid;            /* grid проще и надёжнее для центрирования */
+  place-items: center;      /* центр по вертикали/горизонтали */
+}
+
+#demo-modal .panel{
+  max-width: 720px;
+  width: 92vw;
+}
+
+body.modal-open{
+  overflow: hidden;         /* отключаем прокрутку фона, чтобы не «уползало» */
+}
+
+/* На всякий случай скрываем элементы с [hidden] принудительно */
+#demo-modal[hidden],
+#demo-modal-overlay[hidden]{
+  display: none !important;
+}
+

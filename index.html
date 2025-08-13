@@ -971,6 +971,41 @@
   </div>
 </footer>
 
+<!-- Demo request modal -->
+<!-- ===== DEMO REQUEST MODAL (Yandex Forms embed) ===== -->
+<!-- Overlay -->
+<div id="demo-modal-overlay" hidden></div>
+
+<!-- Modal -->
+<div id="demo-modal" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title" hidden>
+  <div class="panel">
+    <header>
+      <h3 id="demo-modal-title" class="title">Запросить демо</h3>
+      <button class="close" type="button" data-close-demo aria-label="Закрыть модальное окно">Закрыть</button>
+    </header>
+
+    <div class="body">
+      <!-- Встроенная Яндекс Форма -->
+      <div class="iframe-wrap loading">
+        <!-- ЗАМЕНИТЕ XXXXXXXXXXXX на ID вашей формы (Публичная ссылка → forms.yandex.ru/u/XXXXXXXXXXXX/) -->
+        <iframe
+          id="ya-form"
+          src="https://forms.yandex.ru/u/689cd8284936390100d57166/?iframe=1"
+          title="Заявка на демо Rivoo"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allow="clipboard-write"
+        ></iframe>
+      </div>
+
+      <!-- Фолбэк для пользователей без JS -->
+      <noscript>
+        Форма для заявки: <a href="https://forms.yandex.ru/u/XXXXXXXXXXXX/" target="_blank" rel="noopener">открыть по ссылке</a>
+      </noscript>
+    </div>
+  </div>
+</div>
+
 
   <!-- External JS (no inline scripts) -->
   <script defer src="rivoo.js"></script>
