@@ -302,17 +302,45 @@
 })();
 
 
-/* ==== Open video buttons in new tab ==== */
-(function(){
-  const videoButtons = document.querySelectorAll('.btn-video');
-  videoButtons.forEach(btn => {
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
-      const url = this.getAttribute('data-video-url');
-      if (url) {
-        window.open(url, '_blank', 'noopener');
-      }
-    });
-  });
+/* ==== Open any video link in new tab (robust, class-agnostic) ==== */
+(function () {
+  // Нормализуем URL (чинит 'ttps://', добавляет https:// если забыли)
+  function normalizeUrl(u) {
+    if (!u) return null;
+    let url = u.trim();
+    if (/^ttps?:\/\//i.test(url)) url = 'h' + url;        // ttps:// -> https://
+    if (!/^[a-z]+:\/\//i.test(url)) url = 'https://' + url; // без схемы -> https://
+    try { return new URL(url).toString(); } catch { return null; }
+  }
+
+  // Не мешаем Ctrl/Cmd/Shift/Alt кликам (пусть ведут себя стандартно)
+  function hasModifier(e) {
+    return e.ctrlKey || e.metaKey || e.shiftKey || e.altKey || e.button !== 0;
+  }
+
+  document.addEventListener('click', function (e) {
+    const a = e.target.closest('a');
+    if (!a) return;
+
+    // Целимся в ссылки с data-video-url ИЛИ с href="#video"
+    const isVideoAnchor = a.hasAttribute('data-video-url') || a.getAttribute('href') === '#video';
+    if (!isVideoAnchor) return;
+
+    // Если модификаторы — выходим (пусть откроется как обычно)
+    if (hasModifier(e)) return;
+
+    const raw = a.getAttribute('data-video-url') || '';   // желательно всегда задавать data-video-url
+    const url = normalizeUrl(raw);
+    if (!url) {
+      // fallback: если нет/битый data-video-url — ничего не ломаем, позволяем перейти по #video
+      console.warn('[video-open] некорректный data-video-url у элемента:', a);
+      return;
+    }
+
+    // Наше открытие и блокировка дефолтного перехода
+    e.preventDefault();
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }, true); // capture=true, чтобы ловить до других обработчиков
 })();
+
 
