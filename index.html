@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RIVOO — AI That Delivery Value, Not Just Code.</title>
+  <meta name="description" content="Rivoo — AI Pilots для вашей DevOps-экосистемы: автономные агенты, on-prem, traceability, DevOps-native." />
+
+  <!-- External CSS (no inline styles) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" role="banner">
+    <div class="container">
+      <!-- Logo -->
+      <a href="#" class="logo" aria-label="Rivoo — на главную">
+        <span class="mark">RIVOO</span>
+      </a>
+
+      <!-- Navigation -->
+      <nav class="nav" aria-label="Основная навигация">
+        <ul class="navlist" role="list">
+          <li><a href="#features" aria-label="К разделу Фичи">Фичи</a></li>
+          <li><a href="#how" aria-label="К разделу Как работает">Как работает</a></li>
+          <li><a href="#pricing" aria-label="К разделу Тарифы">Тарифы</a></li>
+          <li><a href="#video" aria-label="К разделу Видео">Видео</a></li>
+          <li><a href="#deck.pdf" aria-label="Скачать презентацию">Презентация</a></li>
+        </ul>
+
+        <!-- CTA (desktop) -->
+        <a class="hd-cta" href="#demo" aria-label="Запросить демо Rivoo">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M14 4l6 6-7 7-6-6 7-7z" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M8 16l-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          Запросить демо
+        </a>
+
+        <!-- Burger -->
+        <button class="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobile-sheet">
+          <span></span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div id="mobile-sheet" class="sheet" role="dialog" aria-modal="false" aria-label="Мобильное меню">
+      <a href="#features">Фичи</a>
+      <a href="#how">Как работает</a>
+      <a href="#pricing">Тарифы</a>
+      <a href="#video">Видео</a>
+      <div class="sheet-cta">
+        <a class="hd-cta" href="#demo">Запросить демо</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <main class="hero" aria-labelledby="hero-heading">
+    <!-- RIGHT: Isometric 3D agent graph -->
+    <section class="right" aria-hidden="true">
+      <svg class="art" viewBox="0 0 760 620" role="img" aria-label="AI-агент Rivoo, подключённый к Jira, GitHub и Confluence">
+        <defs>
+          <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#FF8A65"/>
+            <stop offset="100%" stop-color="#6C63FF"/>
+          </linearGradient>
+          <linearGradient id="wire" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="rgba(255,255,255,.2)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,.6)"/>
+          </linearGradient>
+          <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="12" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <g id="cube">
+            <polygon points="0,-40 70,0 0,40 -70,0" fill="url(#grad)" opacity="0.95"></polygon>
+            <polygon points="0,40 70,0 70,80 0,120 -70,80 -70,0" fill="rgba(255,255,255,.06)"></polygon>
+            <polygon points="-70,0 0,40 0,120 -70,80" fill="rgba(255,255,255,.075)"></polygon>
+            <polygon points="70,0 0,40 0,120 70,80" fill="rgba(0,0,0,.15)"></polygon>
+          </g>
+          <g id="node">
+            <polygon points="0,-18 32,0 0,18 -32,0" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.12)"></polygon>
+          </g>
+          <g id="pulse">
+            <circle r="68" fill="none" stroke="url(#grad)" stroke-width="2">
+              <animate attributeName="r" values="62;86;62" dur="4.2s" repeatCount="indefinite" />
+              <animate attributeName="opacity" values=".6;0;.6" dur="4.2s" repeatCount="indefinite" />
+            </circle>
+          </g>
+        </defs>
+
+        <!-- faint grid -->
+        <g opacity=".15">
+          <g fill="none" stroke="url(#wire)" stroke-width="1">
+            <g transform="translate(380,300) skewX(-30) scale(1, .85)">
+              <path d="M-420 -180 H 420"/>
+              <path d="M-420 -140 H 420"/>
+              <path d="M-420 -100 H 420"/>
+              <path d="M-420 -60 H 420"/>
+              <path d="M-420 -20 H 420"/>
+              <path d="M-420 20 H 420"/>
+              <path d="M-420 60 H 420"/>
+              <path d="M-420 100 H 420"/>
+              <path d="M-420 140 H 420"/>
+              <path d="M-420 180 H 420"/>
+            </g>
+          </g>
+        </g>
+
+        <!-- center pilot -->
+        <g id="center" transform="translate(400,300)" filter="url(#softGlow)">
+          <use href="#pulse"></use>
+          <use href="#cube"></use>
+          <text x="0" y="148" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="18" font-weight="700" style="letter-spacing:.4px">RIVOO Pilot</text>
+        </g>
+
+        <!-- animated connections -->
+        <g transform="translate(400,300)" stroke="url(#grad)" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="6 8">
+          <path d="M0 20 C 120 10, 200 -40, 260 -80">
+            <animate attributeName="stroke-dashoffset" values="0; -140" dur="3s" repeatCount="indefinite"/>
+          </path>
+          <path d="M0 24 C -120 30, -230 20, -280 60">
+            <animate attributeName="stroke-dashoffset" values="0; -160" dur="3.6s" repeatCount="indefinite"/>
+          </path>
+          <path d="M0 10 C 40 120, 60 190, 80 240">
+            <animate attributeName="stroke-dashoffset" values="0; -110" dur="2.8s" repeatCount="indefinite"/>
+          </path>
+        </g>
+
+        <!-- tools -->
+        <g transform="translate(660,220)">
+          <use href="#node"></use>
+          <text x="0" y="38" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="16" font-weight="600">Jira</text>
+        </g>
+        <g transform="translate(120,360)">
+          <use href="#node"></use>
+          <text x="0" y="38" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="16" font-weight="600">GitHub</text>
+        </g>
+        <g transform="translate(480,540)">
+          <use href="#node"></use>
+          <text x="0" y="38" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="16" font-weight="600">Confluence</text>
+        </g>
+
+        <!-- sparkles -->
+        <g fill="url(#grad)" opacity=".85">
+          <circle cx="540" cy="160" r="2.2"><animate attributeName="opacity" values=".2;1;.2" dur="2.2s" repeatCount="indefinite"/></circle>
+          <circle cx="220" cy="120" r="2"><animate attributeName="opacity" values=".2;1;.2" dur="2.8s" repeatCount="indefinite"/></circle>
+          <circle cx="700" cy="420" r="1.8"><animate attributeName="opacity" values=".2;1;.2" dur="2.5s" repeatCount="indefinite"/></circle>
+          <circle cx="80" cy="480" r="2"><animate attributeName="opacity" values=".2;1;.2" dur="2.7s" repeatCount="indefinite"/></circle>
+        </g>
+      </svg>
+      <div class="glow"></div>
+    </section>
+
+    <!-- LEFT: Value + actions -->
+    <section class="left">
+      <h1 id="hero-heading">
+        <span class="grad">AI Pilots</span> для вашей DevOps-экосистемы
+      </h1>
+      <p class="subtitle">
+        Автономные агенты, которые берут задачи из вашего Scrum-борда и возвращают готовый результат на ревью — строго по вашим гайдлайнам, с traceability и возможностью локального запуска.
+      </p>
+
+      <div class="bullets" role="list">
+        <div class="chip" role="listitem" aria-label="On-Premise Ready">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3l7 3v6c0 4.418-3.134 7.83-7 9-3.866-1.17-7-4.582-7-9V6l7-3z" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M9.5 12.5l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          On-Premise Ready
+        </div>
+        <div class="chip" role="listitem" aria-label="Middle-Level Performance">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".9"/>
+          </svg>
+          Middle-Level Performance
+        </div>
+        <div class="chip" role="listitem" aria-label="DevOps Native">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M8 7l4 4m4-4l-4 4M3 13h7a6 6 0 006 6h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          DevOps Native
+        </div>
+      </div>
+
+      <nav class="hero-cta" aria-label="Основные действия">
+        <a class="btn btn-primary" href="#demo" aria-label="Запросить демо Rivoo">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M14 4l6 6-7 7-6-6 7-7z" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M8 16l-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          Запросить демо
+        </a>
+        <a class="btn btn-secondary" href="#video" aria-label="Смотреть видео о продукте">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M8 6l10 6-10 6V6z" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
+          Смотреть видео
+        </a>
+        <a class="btn btn-secondary" href="#deck.pdf" aria-label="Скачать презентацию">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          Скачать презентацию
+        </a>
+      </nav>
+    </section>
+  </main>
+
+  <!-- ===== PROBLEM ===== -->
+  <section class="prob-section" aria-labelledby="problem-title">
+    <div class="prob-container">
+      <!-- Left copy -->
+      <div>
+        <h2 id="problem-title" class="prob-title">Команды жертвуют качеством ради скорости</h2>
+        <p class="prob-subtitle">
+          Чтобы уложиться в сроки, разработчики откладывают процессные задачи — документацию, тесты, рефакторинг, детальные требования и&nbsp;traceability.
+          Но именно они обеспечивают масштабируемость, управляемость и предсказуемость разработки.
+        </p>
+      </div>
+
+      <!-- Right visual: rectangular comparison -->
+      <div>
+        <div class="prob-grid" role="group" aria-label="Сравнение Feature Delivery и Process Tasks">
+          <!-- Feature Delivery -->
+          <section class="prob-col feature" aria-labelledby="col-feature-title">
+            <header>
+              <span class="tag" aria-hidden="true"></span>
+              <h3 id="col-feature-title" style="margin:0; font-size:14px; text-transform:uppercase; letter-spacing:.8px;">Feature Delivery</h3>
+            </header>
+            <div class="prob-stack">
+              <div class="prob-card">
+                <span class="prob-label">Реализация фич</span>
+                <span class="prob-state">В приоритете</span>
+              </div>
+              <div class="prob-card">
+                <span class="prob-label">Hotfix & релизы</span>
+                <span class="prob-state">В приоритете</span>
+              </div>
+              <div class="prob-card">
+                <span class="prob-label">Багфиксы критичных дефектов</span>
+                <span class="prob-state">В приоритете</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Process Tasks -->
+          <section class="prob-col process" aria-labelledby="col-process-title">
+            <header>
+              <span class="tag" aria-hidden="true"></span>
+              <h3 id="col-process-title" style="margin:0; font-size:14px; text-transform:uppercase; letter-spacing:.8px;">Process Tasks</h3>
+            </header>
+            <div class="prob-stack">
+              <div class="prob-card">
+                <span class="prob-label">Рефакторинг</span>
+                <span class="prob-state">Откладывается</span>
+              </div>
+              <div class="prob-card">
+                <span class="prob-label">Тесты (Coverage)</span>
+                <span class="prob-state">Откладывается</span>
+              </div>
+              <div class="prob-card">
+                <span class="prob-label">Документация</span>
+                <span class="prob-state">Откладывается</span>
+              </div>
+              <div class="prob-card">
+                <span class="prob-label">Детальные требования</span>
+                <span class="prob-state">Выпадают</span>
+              </div>
+              <div class="prob-card">
+                <span class="prob-label">Traceability</span>
+                <span class="prob-state">Выпадает</span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="prob-legend" aria-hidden="true">
+          <span class="prob-swatch"></span> В приоритете
+          <span class="prob-swatch muted" style="margin-left:14px"></span> Откладывается / выпадает
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ===== WHY COPILOTS FAIL ===== -->
+<section class="section" aria-labelledby="why-title">
+  <div class="container">
+    <!-- LEFT: Myth vs Reality -->
+    <div>
+      <h2 id="why-title" class="title">Почему обычные CoPilots не справляются</h2>
+      <p class="subtitle">
+        Большинство AI CoPilot работают как помощники разработчика — хорошо отвечают на вопросы, но не берут на себя ответственность за выполнение задач в рамках DevOps-процессов.  
+        В результате ключевые процессные задачи остаются на людях, и компания теряет контроль над качеством.
+      </p>
+
+      <div class="ribbon">
+        <div class="strip">
+          <header>Миф vs Реальность</header>
+          <div class="myth">
+            <span class="badge myth"></span>
+            <div class="text">
+              <b>Миф:</b>
+              <span>CoPilot сможет «сам» вести задачу от начала до конца</span>
+            </div>
+          </div>
+          <div class="reality">
+            <span class="badge"></span>
+            <div class="text">
+              <b>Реальность:</b>
+              <span>CoPilot даёт советы и пишет код, но не интегрирован в DevOps-экосистему и не соблюдает ваши гайдлайны</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="strip">
+          <header>Почему это важно</header>
+          <div class="reality">
+            <span class="badge"></span>
+            <div class="text">
+              <b>Качество процессов:</b>
+              <span>Без traceability, код-ревью и следования стандартам команда рискует потерять управляемость</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Barriers grid -->
+    <div>
+      <div class="grid">
+        <div class="card">
+          <div class="head">
+            <span class="icon">💡</span>
+            <h4>Нет контекста проекта</h4>
+          </div>
+          <p>CoPilots не хранят и не используют полную историю решений и архитектуры</p>
+        </div>
+
+        <div class="card">
+          <div class="head">
+            <span class="icon">🔗</span>
+            <h4>Нет интеграции в DevOps</h4>
+          </div>
+          <p>Не работают как часть пайплайнов и CI/CD, действуют вне процессов</p>
+        </div>
+
+        <div class="card">
+          <div class="head">
+            <span class="icon">📋</span>
+            <h4>Не соблюдают гайдлайны</h4>
+          </div>
+          <p>Не ориентируются в корпоративных шаблонах, правилах и требованиях</p>
+        </div>
+
+        <div class="card">
+          <div class="head">
+            <span class="icon">🔒</span>
+            <h4>Риски безопасности</h4>
+          </div>
+          <p>Обрабатывают данные в облаке, что критично для on-prem и приватных репозиториев</p>
+        </div>
+      </div>
+
+      <div class="note">
+        Для enterprise-команд эти ограничения означают: стандартные CoPilots не решают ключевых задач, а иногда создают новые риски.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOLUTION: RIVOO PILOTS ===== -->
+<section class="section" aria-labelledby="solution-title">
+<h2 id="solution-title" class="title">Rivoo Pilots — как мидл-разработчик, встроенный в ваш проект</h2>
+<p class="subtitle">
+      AI-агенты, обученные на ваших артефактах (код, ADR, Epic, требования), встраиваются в DevOps-стек, соблюдают traceability и возвращают готовые задачи на ревью. Без миграций и переучивания команды.
+    </p>
+
+  <div class="container">
+    <!-- LEFT column: pains solved -->
+    <div class="col">
+      <h3>Что убираем</h3>
+
+      <div class="point">
+        <span class="dot"></span>
+        <div>
+          <b>Хаос в процессе</b>
+          <span>Исключаем работу вне DevOps и без трассировки</span>
+        </div>
+      </div>
+
+      <div class="point">
+        <span class="dot"></span>
+        <div>
+          <b>Зависимость от облака</b>
+          <span>Rivoo Pilots могут работать локально и on-prem</span>
+        </div>
+      </div>
+
+      <div class="point">
+        <span class="dot"></span>
+        <div>
+          <b>Потеря стандартов</b>
+          <span>Внедряем проверку на проектные гайдлайны</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CENTER: visual -->
+    <div class="visual" aria-hidden="false" aria-label="Rivoo Pilots: PO, SA, DEV, QA, CI/CD — в едином контексте проекта">
+        <svg class="art" viewBox="0 0 760 560" role="img">
+          <defs>
+            <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#FF8A65"></stop>
+              <stop offset="100%" stop-color="#6C63FF"></stop>
+            </linearGradient>
+            <linearGradient id="wire" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="rgba(255,255,255,.25)"></stop>
+              <stop offset="100%" stop-color="rgba(255,255,255,.55)"></stop>
+            </linearGradient>
+            <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="10" result="blur"></feGaussianBlur>
+              <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+            </filter>
+            <g id="hex">
+              <polygon points="0,-34 30,-17 30,17 0,34 -30,17 -30,-17" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.10)"></polygon>
+            </g>
+            <g id="pilot">
+              <circle r="56" fill="url(#grad)"></circle>
+              <circle r="70" fill="none" stroke="url(#grad)" stroke-width="2" opacity=".6">
+                <animate attributeName="r" values="64;86;64" dur="4s" repeatCount="indefinite"></animate>
+                <animate attributeName="opacity" values=".6;0;.6" dur="4s" repeatCount="indefinite"></animate>
+              </circle>
+            </g>
+            <g id="role">
+              <use href="#hex"></use>
+              <circle r="6" fill="url(#grad)"></circle>
+            </g>
+          </defs>
+
+          <!-- faint isometric grid -->
+          <g opacity=".13" transform="translate(380,300) skewX(-30) scale(1,.88)">
+            <g fill="none" stroke="url(#wire)" stroke-width="1">
+              <path d="M-420 -180 H 420"></path>
+              <path d="M-420 -140 H 420"></path>
+              <path d="M-420 -100 H 420"></path>
+              <path d="M-420 -60 H 420"></path>
+              <path d="M-420 -20 H 420"></path>
+              <path d="M-420 20 H 420"></path>
+              <path d="M-420 60 H 420"></path>
+              <path d="M-420 100 H 420"></path>
+              <path d="M-420 140 H 420"></path>
+              <path d="M-420 180 H 420"></path>
+            </g>
+          </g>
+
+          <!-- center pilots node -->
+          <g transform="translate(380,280)" filter="url(#softGlow)">
+            <use href="#pilot"></use>
+            <text x="0" y="8" text-anchor="middle" fill="#101017" font-size="16" font-weight="800">RIVOO</text>
+            <text x="0" y="28" text-anchor="middle" fill="#101017" font-size="12" font-weight="800" letter-spacing=".6">PILOTS</text>
+          </g>
+
+          <!-- connections (animated dashes) -->
+          <g stroke="url(#grad)" stroke-linecap="round" stroke-width="2.8" stroke-dasharray="6 8">
+            <!-- to PO -->
+            <path d="M380 280 C 420 200, 520 190, 580 180">
+              <animate attributeName="stroke-dashoffset" values="0;-160" dur="3s" repeatCount="indefinite"></animate>
+            </path>
+            <!-- to SA -->
+            <path d="M380 280 C 300 210, 250 180, 200 160">
+              <animate attributeName="stroke-dashoffset" values="0;-160" dur="3.4s" repeatCount="indefinite"></animate>
+            </path>
+            <!-- to DEV -->
+            <path d="M380 280 C 330 330, 260 360, 210 400">
+              <animate attributeName="stroke-dashoffset" values="0;-140" dur="2.8s" repeatCount="indefinite"></animate>
+            </path>
+            <!-- to QA -->
+            <path d="M380 280 C 450 320, 520 360, 600 380">
+              <animate attributeName="stroke-dashoffset" values="0;-140" dur="3.2s" repeatCount="indefinite"></animate>
+            </path>
+            <!-- to CI/CD -->
+            <path d="M380 280 C 380 360, 380 440, 380 500">
+              <animate attributeName="stroke-dashoffset" values="0;-120" dur="2.6s" repeatCount="indefinite"></animate>
+            </path>
+          </g>
+
+          <!-- role nodes -->
+          <g>
+            <g transform="translate(600,170)">
+              <use href="#role"></use>
+              <text x="0" y="56" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="14" font-weight="700">PO</text>
+            </g>
+            <g transform="translate(200,150)">
+              <use href="#role"></use>
+              <text x="0" y="56" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="14" font-weight="700">SA</text>
+            </g>
+            <g transform="translate(200,410)">
+              <use href="#role"></use>
+              <text x="0" y="56" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="14" font-weight="700">DEV</text>
+            </g>
+            <g transform="translate(600,390)">
+              <use href="#role"></use>
+              <text x="0" y="56" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="14" font-weight="700">QA</text>
+            </g>
+            <g transform="translate(380,510)">
+              <use href="#role"></use>
+              <text x="0" y="56" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="14" font-weight="700">CI/CD</text>
+            </g>
+          </g>
+
+          <!-- external tool labels -->
+          <g font-size="12" fill="rgba(237,237,242,.9)" text-anchor="middle">
+            <text x="650" y="120">Jira</text>
+            <text x="120" y="220">Confluence</text>
+            <text x="120" y="460">GitHub</text>
+            <text x="680" y="450">Jenkins</text>
+            <text x="380" y="545">CI Pipeline</text>
+          </g>
+
+          <!-- tiny sparkles -->
+          <g fill="url(#grad)" opacity=".9">
+            <circle cx="520" cy="120" r="2">
+              <animate attributeName="opacity" values=".2;1;.2" dur="2.4s" repeatCount="indefinite"></animate>
+            </circle>
+            <circle cx="160" cy="260" r="2">
+              <animate attributeName="opacity" values=".2;1;.2" dur="2.8s" repeatCount="indefinite"></animate>
+            </circle>
+            <circle cx="700" cy="420" r="2">
+              <animate attributeName="opacity" values=".2;1;.2" dur="2.6s" repeatCount="indefinite"></animate>
+            </circle>
+          </g>
+        </svg>
+      </div>
+
+    <!-- RIGHT column: advantages -->
+    <div class="col">
+      <h3>Что даём</h3>
+
+      <div class="point">
+        <span class="dot"></span>
+        <div>
+          <b>Автономное выполнение задач</b>
+          <span>Берём Jira-таск, создаём артефакты и сдаём на ревью</span>
+        </div>
+      </div>
+
+      <div class="point">
+        <span class="dot"></span>
+        <div>
+          <b>Интеграция в DevOps</b>
+          <span>Плагины для Jira, GitHub, Confluence и CI/CD</span>
+        </div>
+      </div>
+
+      <div class="point">
+        <span class="dot"></span>
+        <div>
+          <b>Гарантированная traceability</b>
+          <span>Каждый артефакт привязан к требованию и задаче</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI strip -->
+  <div class="kpis">
+    <div class="kpi">⏱ Сокращение времени на задачи до 40%</div>
+    <div class="kpi">✅ 100% соблюдение гайдлайнов</div>
+    <div class="kpi">🔒 On-prem и secure mode</div>
+  </div>
+</section>
+
+<!-- ===== RESULTS — "Результат" ===== -->
+<section aria-labelledby="res-title">
+  
+    <h2 id="res-title" class="title">Команда концентрируется на Delivery — остальное берут Rivoo Pilots</h2>
+    <p class="subtitle">
+      Отдайте задачи, на которые не хватало времени, и следите, как растут ключевые метрики.
+      Мы поднимаем Rivoo на ваших данных за несколько дней.
+    </p>
+
+  <div class="container">
+    <!-- 6 result badges -->
+    <div class="grid" role="list" aria-label="Что берет на себя Rivoo">
+      <article class="badge" role="listitem">
+        <span class="dot" aria-hidden="true"></span>
+        <div>
+          <b>Рефакторинг</b>
+          <span>Снижение техдолга и ускорение последующих релизов.</span>
+        </div>
+      </article>
+
+      <article class="badge" role="listitem">
+        <span class="dot" aria-hidden="true"></span>
+        <div>
+          <b>Тесты</b>
+          <span>Рост покрытия и меньше регрессий на релизах.</span>
+        </div>
+      </article>
+
+      <article class="badge" role="listitem">
+        <span class="dot" aria-hidden="true"></span>
+        <div>
+          <b>Документация</b>
+          <span>Актуальные артефакты и быстрый онбординг.</span>
+        </div>
+      </article>
+
+      <article class="badge" role="listitem">
+        <span class="dot" aria-hidden="true"></span>
+        <div>
+          <b>Детальные требования</b>
+          <span>Чёткие User Story и Test Case, меньше переездов.</span>
+        </div>
+      </article>
+
+      <article class="badge" role="listitem">
+        <span class="dot" aria-hidden="true"></span>
+        <div>
+          <b>Traceability</b>
+          <span>Связность артефактов и прозрачные обоснования.</span>
+        </div>
+      </article>
+
+      <article class="badge" role="listitem">
+        <span class="dot" aria-hidden="true"></span>
+        <div>
+          <b>Повторяющиеся ритуалы</b>
+          <span>Шаблоны и автоматизация рутины.</span>
+        </div>
+      </article>
+    </div>
+
+    <!-- KPI strip -->
+    <div class="kpis" aria-label="Ожидаемый эффект">
+      <div class="kpi">+ Test Coverage</div>
+      <div class="kpi">↑ Velocity по фичам</div>
+      <div class="kpi">+ Docs Coverage</div>
+    </div>
+
+    <!-- CTA row -->
+    <div class="ctaRow" aria-label="Действия">
+      <a class="btn btn-primary" href="#demo" aria-label="Запросить демо Rivoo">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M14 4l6 6-7 7-6-6 7-7z" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M8 16l-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        Запросить демо
+      </a>
+      <a class="btn btn-secondary" href="#video" aria-label="Смотреть видео о продукте">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M8 6l10 6-10 6V6z" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+        Смотреть видео
+      </a>
+      <span class="aside">Запуск на ваших данных — за 2–3 дня</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OPEN ARCHITECTURE ===== -->
+<section class="section" aria-labelledby="arch-title">
+  <div class="container">
+    <!-- LEFT: architecture image -->
+    <figure>
+      <img src="0518a7db-2069-4350-a599-07c22ad5ac3e.png" alt="Схема открытой архитектуры Rivoo" class="art">
+      <figcaption>Архитектура Rivoo Pilots</figcaption>
+    </figure>
+
+    <!-- RIGHT: explanation -->
+    <div class="content">
+      <h2 id="arch-title" class="title">Открытая архитектура</h2>
+      <p class="subtitle">
+        Rivoo Pilots построены по принципу открытой архитектуры — они легко интегрируются в существующую DevOps-среду, поддерживают кастомизацию и безопасно работают on-prem.
+      </p>
+
+      <!-- Group 1: Core -->
+      <div class="group">
+        <h3>Ядро системы</h3>
+        <div class="list">
+          <div class="item">
+            <span class="icon">⚙️</span>
+            <div>
+              <b>Engine</b>
+              <span>Модуль автономного выполнения задач</span>
+            </div>
+          </div>
+          <div class="item">
+            <span class="icon">🧠</span>
+            <div>
+              <b>AI-модели</b>
+              <span>Работа в secure/on-prem режиме</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 2: Интеграции -->
+      <div class="group">
+        <h3>Интеграции</h3>
+        <div class="list">
+          <div class="item">
+            <span class="icon">📋</span>
+            <div>
+              <b>Jira</b>
+              <span>Чтение/обновление задач, трекинг статусов</span>
+            </div>
+          </div>
+          <div class="item">
+            <span class="icon">💻</span>
+            <div>
+              <b>GitHub / GitLab</b>
+              <span>Pull Request, Code Review, CI/CD</span>
+            </div>
+          </div>
+          <div class="item">
+            <span class="icon">📚</span>
+            <div>
+              <b>Confluence</b>
+              <span>Создание и обновление документации</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 3: Расширения -->
+      <div class="group">
+        <h3>Расширения</h3>
+        <div class="list">
+          <div class="item">
+            <span class="icon">🔌</span>
+            <div>
+              <b>API</b>
+              <span>Подключение кастомных модулей</span>
+            </div>
+          </div>
+          <div class="item">
+            <span class="icon">🛠️</span>
+            <div>
+              <b>SDK</b>
+              <span>Разработка собственных плагинов</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== PRICING ===== -->
+<section class="section" aria-labelledby="pricing-title">
+
+    <h2 id="pricing-title" class="title">Тарифы</h2>
+    <p class="subtitle">Все тарифы — подписка помесячно на инженера + разовое внедрение. Выберите пакет под размер и требования вашей команды.</p>
+
+  <div class="container">
+    <div class="grid">
+      <!-- STARTER -->
+      <article class="card" aria-label="Тариф Starter">
+        <div class="ribbon" aria-hidden="true"></div>
+
+        <div class="plan">
+          <h3>Starter</h3>
+          <span class="aud">Стартапы, 3–15 чел.</span>
+        </div>
+
+        <div class="price">
+          <span class="num">$49</span>
+          <span class="per">/ инженера в месяц</span>
+        </div>
+        <div class="impl">Разовое внедрение: <b>$1 000</b></div>
+
+        <ul class="list">
+          <li>
+            <span class="tick" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                <path d="M6 12l4 4 8-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </span>
+            Code- & Test-Pilots
+          </li>
+          <li>
+            <span class="tick" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                <path d="M6 12l4 4 8-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </span>
+            Базовая трассировка
+          </li>
+          <li class="muted">
+            <span class="tick" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                <path d="M6 12l4 4 8-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </span>
+            SaaS-развёртывание
+          </li>
+        </ul>
+
+        <div class="cta">
+          <a class="btn btn-primary" href="#demo">Запросить демо</a>
+          <a class="btn btn-secondary" href="#deck.pdf">Скачать презентацию</a>
+        </div>
+      </article>
+
+      <!-- GROWTH (highlight) -->
+      <article class="card highlight" aria-label="Тариф Growth">
+        <div class="ribbon" aria-hidden="true"></div>
+
+        <div class="plan">
+          <h3>Growth</h3>
+          <span class="aud">Продуктовые команды, 16–25 чел.</span>
+        </div>
+
+        <div class="price">
+          <span class="num">$80</span>
+          <span class="per">/ инженера в месяц</span>
+        </div>
+        <div class="impl">Разовое внедрение: <b>$2 400</b></div>
+
+        <ul class="list">
+          <li>
+            <span class="tick" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                <path d="M6 12l4 4 8-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </span>
+            + Backlog/DevOps CoPilots
+          </li>
+          <li>
+            <span class="tick" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                <path d="M6 12l4 4 8-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </span>
+            CI/CD шаблоны
+          </li>
+          <li class="muted">
+            <span class="tick" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                <path d="M6 12l4 4 8-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </span>
+            SaaS Source of Truth
+          </li>
+        </ul>
+
+        <div class="cta">
+          <a class="btn btn-primary" href="#demo">Запросить демо</a>
+          <a class="btn btn-secondary" href="#deck.pdf">Скачать презентацию</a>
+        </div>
+      </article>
+
+      <!-- PRIVATE -->
+      <article class="card" aria-label="Тариф Private">
+        <div class="ribbon" aria-hidden="true"></div>
+
+        <div class="plan">
+          <h3>Private</h3>
+          <span class="aud">Финтех, телеком, гос-сектор</span>
+        </div>
+
+        <div class="price">
+          <span class="num">$100</span>
+          <span class="per">/ инженера в месяц</span>
+        </div>
+        <div class="impl">Разовое внедрение: <b>$20 000</b> <span class="muted">(включает Helm-чарт, кастомный rollout)</span></div>
+
+        <ul class="list">
+          <li>
+            <span class="tick" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                <path d="M6 12l4 4 8-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </span>
+            On-prem развертывание
+          </li>
+          <li>
+            <span class="tick" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                <path d="M6 12l4 4 8-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </span>
+            Governance-модуль и AI-контроль
+          </li>
+          <li class="muted">
+            <span class="tick" aria-hidden="true">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                <path d="M6 12l4 4 8-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </span>
+            Поддержка SLA
+          </li>
+        </ul>
+
+        <div class="cta">
+          <a class="btn btn-primary" href="#demo">Запросить демо</a>
+          <a class="btn btn-secondary" href="#deck.pdf">Скачать презентацию</a>
+        </div>
+      </article>
+    </div>
+   </div>
+
+<div class="container">
+    <p class="note">
+      Цены — ориентиры по подписке на инженера в месяц; внедрение оплачивается отдельно разовым платежом. Состав пакетов и условия соответствуют вашему прайс-слайду (Starter/Growth/Private, включения и аудитории).
+    </p>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section" aria-labelledby="cta-title">
+  
+    <h2 id="cta-title" class="cta-title">Готовы запустить Rivoo Pilots в вашей команде?</h2>
+
+    <p class="cta-subtitle">
+      Получите демо-версию и презентацию, чтобы увидеть, как Rivoo автоматизирует задачи, соблюдает ваши гайдлайны и безопасно интегрируется в DevOps-процессы.
+    </p>
+
+    <div class="cta-buttons">
+      <a href="#demo" class="btn btn-primary">Запросить демо</a>
+      <a href="#deck.pdf" class="btn btn-secondary">Скачать презентацию</a>
+    </div>
+  
+</section>
+
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-container">
+    <!-- Column 1: Logo + Description -->
+    <div>
+      <div class="logo">RIVOO</div>
+      <p class="desc">
+        Новое поколение AI Pilots для команд разработки. Автономное выполнение задач, следование гайдлайнам и безопасная интеграция в вашу DevOps-среду.
+      </p>
+    </div>
+
+    <!-- Column 2: Навигация -->
+    <div>
+      <div class="footer-title">Навигация</div>
+      <ul class="footer-list">
+        <li><a href="#features">Возможности</a></li>
+        <li><a href="#pricing-title">Тарифы</a></li>
+        <li><a href="#arch-title">Архитектура</a></li>
+        <li><a href="#cta-title">Контакты</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3: Ресурсы -->
+    <div>
+      <div class="footer-title">Ресурсы</div>
+      <ul class="footer-list">
+        <li><a href="#deck.pdf">Скачать презентацию</a></li>
+        <li><a href="#demo">Запросить демо</a></li>
+        <li><a href="https://youtube.com" target="_blank" rel="noopener">Видео</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2025 RIVOO. Все права защищены.
+  </div>
+</footer>
+
+
+  <!-- External JS (no inline scripts) -->
+  <script defer src="rivoo.js"></script>
+</body>
+</html>
