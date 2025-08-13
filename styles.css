@@ -228,6 +228,11 @@ h1{
   filter: blur(18px); pointer-events:none; opacity:.8;
 }
 
+/* Отключаем заливку у всех кривых внутри HERO-SVG */
+svg path {
+  fill: none;
+}
+
 @media (max-width: 980px){
   .hero{grid-template-columns:1fr; padding:clamp(18px,5vw,40px)}
   .right{order:-1; min-height:380px;}
