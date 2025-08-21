@@ -1,1014 +1,591 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>RIVOO — AI That Delivery Value, Not Just Code.</title>
-  <meta name="description" content="Rivoo — AI Pilots для вашей DevOps-экосистемы: автономные агенты, on-prem, traceability, DevOps-native." />
-
-  <!-- External CSS (no inline styles) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <title>Rivoo — AI-экосистема для DevOps</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
-<body>
+<body class="theme-dark">
+  <a class="skip-link" href="#main">Пропустить к содержимому</a>
 
-  <!-- ===== HEADER ===== -->
-  <header class="header" role="banner">
+  <!-- ======================== HEADER ======================== -->
+  <header class="site-header" data-header>
     <div class="container">
-      <!-- Logo -->
-      <a href="#" class="logo" aria-label="Rivoo — на главную">
-        <span class="mark">RIVOO</span>
-      </a>
-
-      <!-- Navigation -->
-      <nav class="nav" aria-label="Основная навигация">
-        <ul class="navlist" role="list">
-          <li><a href="#features" aria-label="К разделу Фичи">Фичи</a></li>
-          <li><a href="#how" aria-label="К разделу Как работает">Как работает</a></li>
-          <li><a href="#pricing" aria-label="К разделу Тарифы">Тарифы</a></li>
-          <li><a href="#video" class="btn-video" data-video-url="https://www.youtube.com/watch?v=s-I1NWoBk6w" aria-label="К разделу Видео">Видео</a></li>
-          <li><a href="#deck.pdf" data-download="/RIVOO_Deck.pdf" aria-label="Скачать презентацию">Презентация</a></li>
-        </ul>
-
-        <!-- CTA (desktop) -->
-        <a class="hd-cta" href="#demo" aria-label="Запросить демо Rivoo">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M14 4l6 6-7 7-6-6 7-7z" stroke="currentColor" stroke-width="1.6"/>
-            <path d="M8 16l-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-          </svg>
-          Запросить демо
+      <div class="site-header__inner">
+        <!-- ЛОГО -->
+        <a href="#" class="site-header__brand" aria-label="Rivoo — на главную">
+          <span class="logo-box" aria-hidden="true">RIVOO</span>
         </a>
 
-        <!-- Burger -->
-        <button class="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobile-sheet">
-          <span></span>
-        </button>
-      </nav>
-    </div>
+        <!-- НАВИГАЦИЯ (Десктоп) -->
+        <nav class="site-header__nav" aria-label="Главная навигация">
+          <ul class="site-header__menu">
+            <li><a href="#product">Продукт</a></li>
+            <li><a href="#use-cases">Сценарии</a></li>
+            <li><a href="#metrics">Метрики</a></li>
+            <li><a href="#diffs">Дифференциаторы</a></li>
+            <li class="hide-mobile"><a href="#docs">Документация</a></li>
+          </ul>
+        </nav>
 
-    <!-- Mobile sheet -->
-    <div id="mobile-sheet" class="sheet" role="dialog" aria-modal="false" aria-label="Мобильное меню">
-      <a href="#features">Фичи</a>
-      <a href="#how">Как работает</a>
-      <a href="#pricing">Тарифы</a>
-      <a href="#video" class="btn-video" data-video-url="https://www.youtube.com/watch?v=s-I1NWoBk6w">Видео</a>
-      <div class="sheet-cta">
-        <a class="hd-cta" href="#demo">Запросить демо</a>
+        <!-- CTA -->
+        <div class="site-header__cta">
+          <a class="btn btn--primary" href="#demo">Запросить демо</a>
+          <button class="hamburger" aria-label="Открыть меню" aria-controls="mobileMenu" aria-expanded="false" data-burger>
+            <span></span><span></span><span></span>
+          </button>
+        </div>
       </div>
     </div>
+
+    <!-- МОБИЛЬНОЕ МЕНЮ -->
+    <nav id="mobileMenu" class="mobile-drawer" aria-label="Мобильная навигация" hidden>
+      <ul class="mobile-drawer__menu">
+        <li><a href="#product" data-link>Продукт</a></li>
+        <li><a href="#use-cases" data-link>Сценарии</a></li>
+        <li><a href="#metrics" data-link>Метрики</a></li>
+        <li><a href="#diffs" data-link>Дифференциаторы</a></li>
+        <li><a href="#docs" data-link>Документация</a></li>
+        <li><a class="btn btn--primary btn--block" href="#demo" data-link>Запросить демо</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- ===== HERO ===== -->
-  <main class="hero" aria-labelledby="hero-heading">
-    <!-- RIGHT: Isometric 3D agent graph -->
-    <section class="right" aria-hidden="true">
-      <svg class="art" viewBox="0 0 760 620" role="img" aria-label="AI-агент Rivoo, подключённый к Jira, GitHub и Confluence">
-        <defs>
-          <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#FF8A65"/>
-            <stop offset="100%" stop-color="#6C63FF"/>
-          </linearGradient>
-          <linearGradient id="wire" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="rgba(255,255,255,.2)"/>
-            <stop offset="100%" stop-color="rgba(255,255,255,.6)"/>
-          </linearGradient>
-          <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="12" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <g id="cube">
-            <polygon points="0,-40 70,0 0,40 -70,0" fill="url(#grad)" opacity="0.95"></polygon>
-            <polygon points="0,40 70,0 70,80 0,120 -70,80 -70,0" fill="rgba(255,255,255,.06)"></polygon>
-            <polygon points="-70,0 0,40 0,120 -70,80" fill="rgba(255,255,255,.075)"></polygon>
-            <polygon points="70,0 0,40 0,120 70,80" fill="rgba(0,0,0,.15)"></polygon>
-          </g>
-          <g id="node">
-            <polygon points="0,-18 32,0 0,18 -32,0" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.12)"></polygon>
-          </g>
-          <g id="pulse">
-            <circle r="68" fill="none" stroke="url(#grad)" stroke-width="2">
-              <animate attributeName="r" values="62;86;62" dur="4.2s" repeatCount="indefinite" />
-              <animate attributeName="opacity" values=".6;0;.6" dur="4.2s" repeatCount="indefinite" />
-            </circle>
-          </g>
-        </defs>
+  <!-- ======================== HERO ======================== -->
+  <main id="main">
+    <section class="hero" id="hero">
+      <div class="container">
+        <div class="hero__grid">
+          <!-- ТЕКСТ -->
+          <div class="hero__content">
+            <h1 class="hero__title">
+              Уберите узкие места в разработке.<br class="hide-mobile" /> Рутину возьмёт на себя <span class="brand-gradient">Rivoo</span>.
+            </h1>
+            <p class="hero__subtitle">
+              On‑prem AI‑экосистема, которая автоматизирует ревью PR/MR, тесты, документацию и онбординг.
+              Работает в вашем GitLab, Jira/Tracker, Wiki и MatterMost.
+            </p>
 
-        <!-- faint grid -->
-        <g opacity=".15">
-          <g fill="none" stroke="url(#wire)" stroke-width="1">
-            <g transform="translate(380,300) skewX(-30) scale(1, .85)">
-              <path d="M-420 -180 H 420"/>
-              <path d="M-420 -140 H 420"/>
-              <path d="M-420 -100 H 420"/>
-              <path d="M-420 -60 H 420"/>
-              <path d="M-420 -20 H 420"/>
-              <path d="M-420 20 H 420"/>
-              <path d="M-420 60 H 420"/>
-              <path d="M-420 100 H 420"/>
-              <path d="M-420 140 H 420"/>
-              <path d="M-420 180 H 420"/>
-            </g>
-          </g>
-        </g>
+            <ul class="hero__points">
+              <li><span class="dot dot--core"></span> Core — Source of Truth: код, ADR, тесты, доки в едином контексте</li>
+              <li><span class="dot dot--guard"></span> Guard — AI‑ревью и формальная приёмка merge</li>
+              <li><span class="dot dot--runner"></span> Runner/Guide — тесты, доки, багфиксы и онбординг без перегрузки сеньоров</li>
+            </ul>
 
-        <!-- center pilot -->
-        <g id="center" transform="translate(400,300)" filter="url(#softGlow)">
-          <use href="#pulse"></use>
-          <use href="#cube"></use>
-          <text x="0" y="148" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="18" font-weight="700" style="letter-spacing:.4px">RIVOO Pilot</text>
-        </g>
+            <div class="hero__cta">
+              <a class="btn btn--primary" href="#demo">Запросить демо</a>
+              <a class="btn btn--ghost" href="#how">Посмотреть как работает</a>
+            </div>
 
-        <!-- animated connections -->
-        <g transform="translate(400,300)" stroke="url(#grad)" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="6 8">
-          <path d="M0 20 C 120 10, 200 -40, 260 -80">
-            <animate attributeName="stroke-dashoffset" values="0; -140" dur="3s" repeatCount="indefinite"/>
-          </path>
-          <path d="M0 24 C -120 30, -230 20, -280 60">
-            <animate attributeName="stroke-dashoffset" values="0; -160" dur="3.6s" repeatCount="indefinite"/>
-          </path>
-          <path d="M0 10 C 40 120, 60 190, 80 240">
-            <animate attributeName="stroke-dashoffset" values="0; -110" dur="2.8s" repeatCount="indefinite"/>
-          </path>
-        </g>
+            <div class="hero__trust">
+              <div class="metric-chip">
+                <span class="metric-chip__value" data-counter data-target="60">0%</span>
+                <span class="metric-chip__label">Быстрее code review</span>
+              </div>
+              <div class="metric-chip">
+                <span class="metric-chip__value" data-counter data-target="50">0%</span>
+                <span class="metric-chip__label">− PR cycle time</span>
+              </div>
+              <div class="metric-chip">
+                <span class="metric-chip__value" data-counter data-target="30">0%</span>
+                <span class="metric-chip__label">+ покрытия тестами</span>
+              </div>
+            </div>
 
-        <!-- tools -->
-        <g transform="translate(660,220)">
-          <use href="#node"></use>
-          <text x="0" y="38" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="16" font-weight="600">Jira</text>
-        </g>
-        <g transform="translate(120,360)">
-          <use href="#node"></use>
-          <text x="0" y="38" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="16" font-weight="600">GitHub</text>
-        </g>
-        <g transform="translate(480,540)">
-          <use href="#node"></use>
-          <text x="0" y="38" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="16" font-weight="600">Confluence</text>
-        </g>
+            <p class="hero__microcopy">On‑Prem. Разворачиваемся за пару дней на ваших данных.</p>
+          </div>
 
-        <!-- sparkles -->
-        <g fill="url(#grad)" opacity=".85">
-          <circle cx="540" cy="160" r="2.2"><animate attributeName="opacity" values=".2;1;.2" dur="2.2s" repeatCount="indefinite"/></circle>
-          <circle cx="220" cy="120" r="2"><animate attributeName="opacity" values=".2;1;.2" dur="2.8s" repeatCount="indefinite"/></circle>
-          <circle cx="700" cy="420" r="1.8"><animate attributeName="opacity" values=".2;1;.2" dur="2.5s" repeatCount="indefinite"/></circle>
-          <circle cx="80" cy="480" r="2"><animate attributeName="opacity" values=".2;1;.2" dur="2.7s" repeatCount="indefinite"/></circle>
-        </g>
-      </svg>
-      <div class="glow"></div>
-    </section>
+          <!-- ИЛЛЮСТРАЦИЯ / ДИАГРАММА -->
+          <div class="hero__visual">
+            <!-- Простая SVG‑схема pipeline: Core → Guide/Runner → Guard → Core -->
+            <svg class="pipeline" viewBox="0 0 520 380" role="img" aria-label="Схема работы Rivoo: Core → Guide/Runner → Guard → Core">
+              <!-- arrows -->
+              <defs>
+                <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                  <path d="M0,0 L0,8 L8,4 z" fill="currentColor"></path>
+                </marker>
+                <linearGradient id="grad" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#7B61FF"></stop>
+                  <stop offset="50%" stop-color="#4C6FFF"></stop>
+                  <stop offset="100%" stop-color="#2DD4BF"></stop>
+                </linearGradient>
+              </defs>
 
-    <!-- LEFT: Value + actions -->
-    <section class="left">
-      <h1 id="hero-heading">
-        <span class="grad">AI Pilots</span> для вашей DevOps-экосистемы
-      </h1>
-      <p class="subtitle">
-        Автономные агенты, которые берут задачи из вашего Scrum-борда и возвращают готовый результат на ревью — строго по вашим гайдлайнам, с traceability и возможностью локального запуска.
-      </p>
+              <!-- Core -->
+              <g transform="translate(205,145)" class="node node--core">
+                <rect x="-75" y="-35" width="150" height="70" rx="14" class="node__box"></rect>
+                <text text-anchor="middle" y="5" class="node__label">Core (SoT)</text>
+              </g>
 
-      <div class="bullets" role="list">
-        <div class="chip" role="listitem" aria-label="On-Premise Ready">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 3l7 3v6c0 4.418-3.134 7.83-7 9-3.866-1.17-7-4.582-7-9V6l7-3z" stroke="currentColor" stroke-width="1.6"/>
-            <path d="M9.5 12.5l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-          On-Premise Ready
-        </div>
-        <div class="chip" role="listitem" aria-label="Middle-Level Performance">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".9"/>
-          </svg>
-          Middle-Level Performance
-        </div>
-        <div class="chip" role="listitem" aria-label="DevOps Native">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M8 7l4 4m4-4l-4 4M3 13h7a6 6 0 006 6h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-          </svg>
-          DevOps Native
+              <!-- Guide -->
+              <g transform="translate(85,50)" class="node node--guide">
+                <rect x="-65" y="-28" width="130" height="56" rx="12" class="node__box"></rect>
+                <text text-anchor="middle" y="5" class="node__label">Guide</text>
+              </g>
+
+              <!-- Runner -->
+              <g transform="translate(85,240)" class="node node--runner">
+                <rect x="-65" y="-28" width="130" height="56" rx="12" class="node__box"></rect>
+                <text text-anchor="middle" y="5" class="node__label">Runner</text>
+              </g>
+
+              <!-- Guard -->
+              <g transform="translate(365,145)" class="node node--guard">
+                <rect x="-65" y="-28" width="130" height="56" rx="12" class="node__box"></rect>
+                <text text-anchor="middle" y="5" class="node__label">Guard</text>
+              </g>
+
+              <!-- lines -->
+              <g class="edges" stroke="url(#grad)" stroke-width="2" fill="none" marker-end="url(#arrow)">
+                <path d="M280,145 C320,145 320,145 300,145"></path> <!-- placeholder -->
+                <path d="M130,50  205,120"></path>  <!-- Guide -> Core -->
+                <path d="M130,240 205,170"></path>  <!-- Runner -> Core -->
+                <path d="M280,145 300,145"></path>  <!-- small join -->
+                <path d="M205,145 300,145"></path>  <!-- Core -> Guard -->
+                <path d="M365,173 C365,260 205,280 205,180"></path> <!-- Guard -> Core (loop) -->
+              </g>
+            </svg>
+          </div>
         </div>
       </div>
-
-      <nav class="hero-cta" aria-label="Основные действия">
-        <a class="btn btn-primary" href="#demo" aria-label="Запросить демо Rivoo">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M14 4l6 6-7 7-6-6 7-7z" stroke="currentColor" stroke-width="1.6"/>
-            <path d="M8 16l-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-          </svg>
-          Запросить демо
-        </a>
-        <a class="btn btn-secondary" href="#video" class="btn-video" data-video-url="https://www.youtube.com/watch?v=s-I1NWoBk6w" aria-label="Смотреть видео о продукте">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M8 6l10 6-10 6V6z" stroke="currentColor" stroke-width="1.6"/>
-          </svg>
-          Смотреть видео
-        </a>
-        <a class="btn btn-secondary" href="#deck.pdf" data-download="/RIVOO_Deck.pdf" aria-label="Скачать презентацию">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-          </svg>
-          Скачать презентацию
-        </a>
-      </nav>
     </section>
+
+    <!-- ======================== PROBLEM ======================== -->
+    <section class="problem" id="problem" aria-labelledby="problem-title">
+    <div class="container">
+        <div class="problem__grid">
+        <!-- ЛЕВАЯ КОЛОНКА: ТЕКСТ -->
+        <div class="problem__content">
+            <h2 class="problem__title" id="problem-title">
+            Самый дорогой ресурс выполняет самую дешёвую работу
+            </h2>
+            <p class="problem__subtitle">
+            Сеньоры тратят до 40% времени на ревью, документацию, тесты и онбординг — вместо архитектуры и ускорения релизов.
+            </p>
+
+            <ul class="problem__list" role="list">
+            <li class="problem__item">
+                <span class="problem__icon">🧑‍💻</span>
+                <div>
+                <strong>Перегрузка сеньоров</strong> — ревью, контроль, наставничество вместо работы по архитектуре.
+                </div>
+            </li>
+            <li class="problem__item">
+                <span class="problem__icon">🗂️</span>
+                <div>
+                <strong>Нет формализованного носителя культуры</strong> — знания расползаются по Confluence, чатам и репозиториям.
+                </div>
+            </li>
+            <li class="problem__item">
+                <span class="problem__icon">🧭</span>
+                <div>
+                <strong>Трудный онбординг новичков</strong> — без вмешательства экспертов вход в кодовую базу и процессы затягивается.
+                </div>
+            </li>
+            <li class="problem__item">
+                <span class="problem__icon">⏱️</span>
+                <div>
+                <strong>Замедление time‑to‑market и рост cost per feature</strong> — команда упирается в bottleneck.
+                </div>
+            </li>
+            <li class="problem__item">
+                <span class="problem__icon">⚠️</span>
+                <div>
+                <strong>Риск для бизнеса</strong> — уход ключевого эксперта бьёт по релизам и устойчивости продукта.
+                </div>
+            </li>
+            </ul>
+
+            <div class="problem__next">
+            <a href="#solution" class="btn btn--ghost">Как мы это решаем</a>
+            </div>
+        </div>
+
+        <!-- ПРАВАЯ КОЛОНКА: ВИЗУАЛИЗАЦИЯ -->
+        <div class="problem__visual" aria-hidden="true">
+            <!-- Кольцо рутины вокруг кода + бейдж 40% -->
+            <div class="problem-ring">
+            <div class="problem-ring__center">КОД</div>
+            <ul class="problem-ring__labels" aria-hidden="true">
+                <li style="--i:0">Ревью</li>
+                <li style="--i:1">Документация</li>
+                <li style="--i:2">Тесты</li>
+                <li style="--i:3">Онбординг</li>
+                <li style="--i:4">Чаты/Созвоны</li>
+            </ul>
+            <div class="problem-ring__badge">
+                40%+
+                <span>времени сеньоров уходит на рутину</span>
+            </div>
+
+            <!-- Поток задач к «узкому горлышку» (css‑анимации) -->
+            <div class="problem-flow">
+                <span class="bubble" style="--d:0s"></span>
+                <span class="bubble" style="--d:.6s"></span>
+                <span class="bubble" style="--d:1.2s"></span>
+                <span class="bubble" style="--d:1.8s"></span>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <section id="solution" class="section section-solution" aria-labelledby="solution-title">
+    <div class="container solution__container">
+        <header class="solution__head">
+        <h2 id="solution-title" class="section-title">Решение</h2>
+        <p class="section-subtitle">
+            Rivoo — on‑prem AI‑экосистема, которая берёт на себя всю рутину «вокруг кода» и устраняет узкие места за счёт четырёх модулей: Core, Guard, Runner, Guide.
+        </p>
+        </header>
+
+        <!-- Диаграмма: центр + орбита с модулями -->
+        <div class="solution-diagram" role="img" aria-label="Rivoo Core, Guard, Runner, Guide — модули, работающие вокруг кода">
+        <div class="solution-diagram__canvas">
+            <!-- Центральный узел -->
+            <div class="solution-node solution-node--center">
+            <div class="solution-node__logo">RIVOO</div>
+            <div class="solution-node__caption">Экосистема</div>
+            </div>
+
+            <!-- Орбита -->
+            <div class="solution-orbit">
+            <!-- Бэйджи модулей. Позиционируются JS по data-angle / data-radius, как в блоке «Проблема» -->
+            <button class="solution-badge" data-angle="320" data-radius="80" data-role="core" aria-label="Rivoo Core">
+                <span class="solution-badge__title">Core</span>
+                <span class="solution-badge__hint">Source of Truth</span>
+            </button>
+
+            <button class="solution-badge" data-angle="30" data-radius="80" data-role="guard" aria-label="Rivoo Guard">
+                <span class="solution-badge__title">Guard</span>
+                <span class="solution-badge__hint">Проверки / приёмка</span>
+            </button>
+
+            <button class="solution-badge" data-angle="150" data-radius="80" data-role="runner" aria-label="Rivoo Runner">
+                <span class="solution-badge__title">Runner</span>
+                <span class="solution-badge__hint">Тесты / доки / фиксы</span>
+            </button>
+
+            <button class="solution-badge" data-angle="220" data-radius="80" data-role="guide" aria-label="Rivoo Guide">
+                <span class="solution-badge__title">Guide</span>
+                <span class="solution-badge__hint">Онбординг / контекст</span>
+            </button>
+
+            <!-- Потоки к центру: позиционируются так же через data-angle / data-length -->
+            <ul class="solution-flows" aria-hidden="true">
+                <li class="solution-flow" data-angle="320" data-length="30"></li>
+                <li class="solution-flow" data-angle="30" data-length="30"></li>
+                <li class="solution-flow" data-angle="150" data-length="30"></li>
+                <li class="solution-flow" data-angle="220" data-length="30"></li>
+            </ul>
+            </div>
+        </div>
+        </div>
+
+        <!-- Краткие ценности по ролям/модулям -->
+        <div class="solution-grid">
+        <article class="solution-card" data-role="core">
+            <h3 class="solution-card__title">Core — Source of Truth</h3>
+            <p class="solution-card__text">Синхронизирует требования, код, тесты, документацию и ADR; фиксирует культуру и артефакты команды. Интеграции: GitLab, Jira/Tracker, Wiki, MatterMost.</p>
+        </article>
+        <article class="solution-card" data-role="guard">
+            <h3 class="solution-card__title">Guard — Контроль и приёмка</h3>
+            <p class="solution-card__text">Автопроверки PR/MR: стиль, архитектура, безопасность, traceability. Формальная приёмка через «всё ворота зелёные» (Gate A/B/C).</p>
+        </article>
+        <article class="solution-card" data-role="runner">
+            <h3 class="solution-card__title">Runner — Автономные исполнители</h3>
+            <p class="solution-card__text">Генерация юнит‑тестов, обновление документации, рефакторинги и багфиксы в виде готовых PR, прошедших Guard.</p>
+        </article>
+        <article class="solution-card" data-role="guide">
+            <h3 class="solution-card__title">Guide — Онбординг и «экзокортекс»</h3>
+            <p class="solution-card__text">Достраивает контекст к задаче, объясняет принятые решения и помогает пройти проверки Guard — особенно для новых участников.</p>
+        </article>
+        </div>
+
+        <!-- Примечание безопасности / формат поставки -->
+        <p class="solution-note">
+        On‑Prem развёртывание в периметре компании, совместимо с российским и OSS DevOps‑стэком; объяснимость действий AI и прозрачное управление политиками.
+        </p>
+    </div>
+    </section>
+
+    <!-- ======================== BENEFITS (Ценности для разных ролей) ======================== -->
+    <section id="benefits" class="section section-benefits" aria-labelledby="benefits-title">
+    <div class="container benefits__container">
+        <header class="benefits__head">
+        <h2 id="benefits-title" class="benefits__title">Ценности для разных ролей</h2>
+        <p class="benefits__subtitle">
+            От сеньоров до бизнеса — у всех появляется больше времени, меньше рисков и прозрачные метрики эффективности.
+        </p>
+        </header>
+
+        <div class="benefits__grid">
+        <!-- СЕНЬОРЫ -->
+        <article class="benefits-card" data-role="seniors">
+            <div class="benefits-card__icon" aria-hidden="true">👨‍💻</div>
+            <h3 class="benefits-card__title">Для сеньоров</h3>
+            <p class="benefits-card__text">
+            Меньше рутины (ревью, доки, тесты), больше архитектуры и сложных задач. Экономия до 20 часов/нед на команду.
+            </p>
+            <div class="benefits-card__chips">
+            <span class="chip">−40–60% на ревью</span>
+            <span class="chip">−50% PR cycle</span>
+            </div>
+        </article>
+
+        <!-- КОМАНДА -->
+        <article class="benefits-card" data-role="team">
+            <div class="benefits-card__icon" aria-hidden="true">👥</div>
+            <h3 class="benefits-card__title">Для команды</h3>
+            <p class="benefits-card__text">
+            Формализованная культура, «страховочная сетка» и быстрый онбординг — новичок делает первый PR в 2–3 раза быстрее.
+            </p>
+            <div class="benefits-card__chips">
+            <span class="chip">+30% coverage</span>
+            <span class="chip">Fast Onboarding</span>
+            </div>
+        </article>
+
+        <!-- БИЗНЕС -->
+        <article class="benefits-card" data-role="business">
+            <div class="benefits-card__icon" aria-hidden="true">🏢</div>
+            <h3 class="benefits-card__title">Для бизнеса</h3>
+            <p class="benefits-card__text">
+            −25% cost per feature и ускорение time‑to‑market. Масштабируемость без найма дорогих сеньоров.
+            </p>
+            <div class="benefits-card__chips">
+            <span class="chip">ROI Dashboard</span>
+            <span class="chip">TtM ↑</span>
+            </div>
+        </article>
+
+        <!-- ENTERPRISE -->
+        <article class="benefits-card" data-role="enterprise">
+            <div class="benefits-card__icon" aria-hidden="true">🔐</div>
+            <h3 class="benefits-card__title">Для Enterprise</h3>
+            <p class="benefits-card__text">
+            On‑Prem/Hybrid, безопасность и контроль. Совместимость с российским и OSS DevOps‑стеком, политиками и аудитом.
+            </p>
+            <div class="benefits-card__chips">
+            <span class="chip">On‑Prem</span>
+            <span class="chip">Compliance</span>
+            </div>
+        </article>
+        </div>
+    </div>
+    </section>
+
+    <!-- ======================== USE CASES ======================== -->
+    <section id="usecases" class="section section-usecases" aria-labelledby="usecases-title">
+    <div class="container usecases__container">
+        <header class="usecases__head">
+        <h2 id="usecases-title" class="usecases__title">Use Cases</h2>
+        <p class="usecases__subtitle">
+            Реальные сценарии, где Rivoo снимает перегрузку с сеньоров и ускоряет цикл задач.
+        </p>
+        </header>
+
+        <div class="usecases__grid">
+        <!-- CASE 1 -->
+        <article class="usecase-card" data-case="new-feature">
+            <h3 class="usecase-card__title">Новая фича</h3>
+            <ul class="usecase-card__steps">
+            <li>Задача в Tracker → <b>Core</b> формирует пакет ADR/контекста</li>
+            <li>Разработчик + <b>Guide</b> пишут код</li>
+            <li><b>Runner</b> генерит тесты и документацию</li>
+            <li><b>Guard</b> проверяет MR → merge при зелёных воротах</li>
+            <li><b>Core</b> фиксирует ADR и обновляет доки</li>
+            </ul>
+        </article>
+
+        <!-- CASE 2 -->
+        <article class="usecase-card" data-case="bugfix">
+            <h3 class="usecase-card__title">Исправление бага</h3>
+            <ul class="usecase-card__steps">
+            <li>Баг в Tracker → <b>Core</b> связывает с ADR и тестами</li>
+            <li><b>Runner</b> предлагает PR с фиксом и регрессионным тестом</li>
+            <li><b>Guard</b> проверяет → merge</li>
+            <li><b>Core</b> обновляет тесты и документацию</li>
+            </ul>
+        </article>
+
+        <!-- CASE 3 -->
+        <article class="usecase-card" data-case="onboarding">
+            <h3 class="usecase-card__title">Онбординг новичка</h3>
+            <ul class="usecase-card__steps">
+            <li>Задача назначена → <b>Guide</b> формирует пакет контекста</li>
+            <li>В IDE <b>Guide</b> объясняет архитектуру и практики</li>
+            <li><b>Runner</b> помогает с тестами и доками</li>
+            <li><b>Guard</b> проводит проверки → MR принят без участия сеньора</li>
+            </ul>
+        </article>
+        </div>
+
+        <!-- Сквозной пайплайн -->
+        <div class="usecases__pipeline">
+        <h3 class="usecases__pipeline-title">Сквозной пайплайн</h3>
+        <p class="usecases__pipeline-desc">
+            Каждая задача проходит через один и тот же цикл: <b>Core → Guide/Runner → Guard → Core</b>.<br>
+            Сеньоры вмешиваются только в исключениях.
+        </p>
+        </div>
+    </div>
+    </section>
+
+    <!-- ======================== METRICS ======================== -->
+    <section id="metrics" class="section section-metrics" aria-labelledby="metrics-title">
+    <div class="container metrics__container">
+        <header class="metrics__head">
+        <h2 id="metrics-title" class="metrics__title">Метрики и результат</h2>
+        <p class="metrics__subtitle">
+            Rivoo измеряется в понятных цифрах: экономия времени, сокращение стоимости и ускорение цикла поставки.
+        </p>
+        </header>
+
+        <div class="metrics__grid">
+        <article class="metric-card">
+            <div class="metric-card__value">−40–60%</div>
+            <div class="metric-card__label">Время на код-ревью</div>
+        </article>
+
+        <article class="metric-card">
+            <div class="metric-card__value">−25%</div>
+            <div class="metric-card__label">Cost per Feature</div>
+        </article>
+
+        <article class="metric-card">
+            <div class="metric-card__value">×2–3</div>
+            <div class="metric-card__label">Быстрее онбординг</div>
+        </article>
+
+        <article class="metric-card">
+            <div class="metric-card__value">+30%</div>
+            <div class="metric-card__label">Test Coverage</div>
+        </article>
+
+        <article class="metric-card">
+            <div class="metric-card__value">−50%</div>
+            <div class="metric-card__label">PR Cycle Time</div>
+        </article>
+
+        <article class="metric-card">
+            <div class="metric-card__value">↑ ROI</div>
+            <div class="metric-card__label">Прозрачные бизнес-метрики</div>
+        </article>
+        </div>
+    </div>
+    </section>
+
+    <!-- ======================== DIFFERENTIATORS ======================== -->
+    <section id="differentiators" class="section section-differentiators" aria-labelledby="diff-title">
+    <div class="container differentiators__container">
+        <header class="differentiators__head">
+        <h2 id="diff-title" class="differentiators__title">Почему Rivoo?</h2>
+        <p class="differentiators__subtitle">
+            Rivoo не просто «копилот» — это полноценный участник команды, встроенный в DevOps-контур компании.
+        </p>
+        </header>
+
+        <div class="differentiators__grid">
+        <article class="diff-card">
+            <h3 class="diff-card__title">On-Prem &amp; Hybrid</h3>
+            <p class="diff-card__text">
+            Развёртывание внутри периметра, без утечек данных. Совместимость с OSS-стеком и российскими DevOps-инструментами.
+            </p>
+        </article>
+
+        <article class="diff-card">
+            <h3 class="diff-card__title">AI как Middle-инженер</h3>
+            <p class="diff-card__text">
+            Rivoo закрывает задачи end-to-end: от PR с кодом и тестами до прохождения Guard-проверок. Не ассистент, а полноценный «мидл».
+            </p>
+        </article>
+
+        <article class="diff-card">
+            <h3 class="diff-card__title">Фокус на «вокруг кода»</h3>
+            <p class="diff-card__text">
+            Не конкурируем с IDE-копилотами в кодогенерации. Вместо этого — документация, тесты, ревью, онбординг, багфиксы.
+            </p>
+        </article>
+
+        <article class="diff-card">
+            <h3 class="diff-card__title">Формальная приёмка</h3>
+            <p class="diff-card__text">
+            PR мёржится только если все «ворота» зелёные: стиль, архитектура, безопасность, связность ADR и тестов.
+            </p>
+        </article>
+
+        <article class="diff-card">
+            <h3 class="diff-card__title">Интеграция с процессами</h3>
+            <p class="diff-card__text">
+            Вшито в GitLab/Jira/Tracker/Wiki/ChatOps. Работает там, где живёт команда, не ломая привычный процесс.
+            </p>
+        </article>
+
+        <article class="diff-card">
+            <h3 class="diff-card__title">Объяснимость и контроль</h3>
+            <p class="diff-card__text">
+            Все действия Rivoo прозрачны: видно логи решений, можно настроить политики и провести аудит.
+            </p>
+        </article>
+        </div>
+    </div>
+    </section>
+
+    <!-- ======================== CTA ======================== -->
+    <section id="cta" class="section section-cta" aria-labelledby="cta-title">
+    <div class="container cta__container">
+        <div class="cta__content">
+        <h2 id="cta-title" class="cta__title">
+            Попробуем Rivoo на ваших данных?
+        </h2>
+        <p class="cta__subtitle">
+            Снимите перегрузку с сеньоров и ускорьте команду уже через несколько дней —
+            развернём Rivoo on-prem или в приватном облаке.
+        </p>
+        <div class="cta__actions">
+            <a href="#contact" class="btn btn-primary">Запросить демо</a>
+            <a href="#docs" class="btn btn-secondary">Смотреть подробнее</a>
+        </div>
+        </div>
+    </div>
+    </section>
+
+    
   </main>
 
-  <!-- ===== PROBLEM ===== -->
-  <section class="prob-section" aria-labelledby="problem-title">
-    <div class="prob-container">
-      <!-- Left copy -->
-      <div>
-        <h2 id="problem-title" class="prob-title">Команды жертвуют качеством ради скорости</h2>
-        <p class="prob-subtitle">
-          Чтобы уложиться в сроки, разработчики откладывают процессные задачи — документацию, тесты, рефакторинг, детальные требования и&nbsp;traceability.
-          Но именно они обеспечивают масштабируемость, управляемость и предсказуемость разработки.
-        </p>
-      </div>
+  <script src="assets/js/app.js" defer></script>
 
-      <!-- Right visual: rectangular comparison -->
-      <div>
-        <div class="prob-grid" role="group" aria-label="Сравнение Feature Delivery и Process Tasks">
-          <!-- Feature Delivery -->
-          <section class="prob-col feature" aria-labelledby="col-feature-title">
-            <header>
-              <span class="tag" aria-hidden="true"></span>
-              <h3 id="col-feature-title" style="margin:0; font-size:14px; text-transform:uppercase; letter-spacing:.8px;">Feature Delivery</h3>
-            </header>
-            <div class="prob-stack">
-              <div class="prob-card">
-                <span class="prob-label">Реализация фич</span>
-                <span class="prob-state">В приоритете</span>
-              </div>
-              <div class="prob-card">
-                <span class="prob-label">Hotfix & релизы</span>
-                <span class="prob-state">В приоритете</span>
-              </div>
-              <div class="prob-card">
-                <span class="prob-label">Багфиксы критичных дефектов</span>
-                <span class="prob-state">В приоритете</span>
-              </div>
-            </div>
-          </section>
-
-          <!-- Process Tasks -->
-          <section class="prob-col process" aria-labelledby="col-process-title">
-            <header>
-              <span class="tag" aria-hidden="true"></span>
-              <h3 id="col-process-title" style="margin:0; font-size:14px; text-transform:uppercase; letter-spacing:.8px;">Process Tasks</h3>
-            </header>
-            <div class="prob-stack">
-              <div class="prob-card">
-                <span class="prob-label">Рефакторинг</span>
-                <span class="prob-state">Откладывается</span>
-              </div>
-              <div class="prob-card">
-                <span class="prob-label">Тесты (Coverage)</span>
-                <span class="prob-state">Откладывается</span>
-              </div>
-              <div class="prob-card">
-                <span class="prob-label">Документация</span>
-                <span class="prob-state">Откладывается</span>
-              </div>
-              <div class="prob-card">
-                <span class="prob-label">Детальные требования</span>
-                <span class="prob-state">Выпадают</span>
-              </div>
-              <div class="prob-card">
-                <span class="prob-label">Traceability</span>
-                <span class="prob-state">Выпадает</span>
-              </div>
-            </div>
-          </section>
+  <!-- ======================== FOOTER ======================== -->
+    <footer id="footer" class="site-footer">
+    <div class="container footer__container">
+        <div class="footer__top">
+        <div class="footer__brand">
+            <div class="footer__logo">RIVOO</div>
+            <p class="footer__tagline">AI Middle Engineer для вашей команды</p>
         </div>
-
-        <div class="prob-legend" aria-hidden="true">
-          <span class="prob-swatch"></span> В приоритете
-          <span class="prob-swatch muted" style="margin-left:14px"></span> Откладывается / выпадает
+        <nav class="footer__nav" aria-label="Footer navigation">
+            <ul>
+            <li><a href="#solution">Решение</a></li>
+            <li><a href="#benefits">Ценности</a></li>
+            <li><a href="#usecases">Use Cases</a></li>
+            <li><a href="#metrics">Метрики</a></li>
+            <li><a href="#differentiators">Почему Rivoo?</a></li>
+            <li><a href="#cta">Контакты</a></li>
+            </ul>
+        </nav>
+        <div class="footer__contacts">
+            <a href="mailto:hello@rivoo.ai">hello@rivoo.ai</a>
+            <p>© 2025 Rivoo. Все права защищены.</p>
         </div>
-      </div>
+        </div>
     </div>
-  </section>
+    </footer>
 
-<!-- ===== WHY COPILOTS FAIL ===== -->
-<section class="section" aria-labelledby="why-title">
-  <div class="container">
-    <!-- LEFT: Myth vs Reality -->
-    <div>
-      <h2 id="why-title" class="title">Почему обычные CoPilots не справляются</h2>
-      <p class="subtitle">
-        Большинство AI CoPilot работают как помощники разработчика — хорошо отвечают на вопросы, но не берут на себя ответственность за выполнение задач в рамках DevOps-процессов.  
-        В результате ключевые процессные задачи остаются на людях, и компания теряет контроль над качеством.
-      </p>
 
-      <div class="ribbon">
-        <div class="strip">
-          <header>Миф vs Реальность</header>
-          <div class="myth">
-            <span class="badge myth"></span>
-            <div class="text">
-              <b>Миф:</b>
-              <span>CoPilot сможет «сам» вести задачу от начала до конца</span>
-            </div>
-          </div>
-          <div class="reality">
-            <span class="badge"></span>
-            <div class="text">
-              <b>Реальность:</b>
-              <span>CoPilot даёт советы и пишет код, но не интегрирован в DevOps-экосистему и не соблюдает ваши гайдлайны</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="strip">
-          <header>Почему это важно</header>
-          <div class="reality">
-            <span class="badge"></span>
-            <div class="text">
-              <b>Качество процессов:</b>
-              <span>Без traceability, код-ревью и следования стандартам команда рискует потерять управляемость</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- RIGHT: Barriers grid -->
-    <div>
-      <div class="grid">
-        <div class="card">
-          <div class="head">
-            <span class="icon">💡</span>
-            <h4>Нет контекста проекта</h4>
-          </div>
-          <p>CoPilots не хранят и не используют полную историю решений и архитектуры</p>
-        </div>
-
-        <div class="card">
-          <div class="head">
-            <span class="icon">🔗</span>
-            <h4>Нет интеграции в DevOps</h4>
-          </div>
-          <p>Не работают как часть пайплайнов и CI/CD, действуют вне процессов</p>
-        </div>
-
-        <div class="card">
-          <div class="head">
-            <span class="icon">📋</span>
-            <h4>Не соблюдают гайдлайны</h4>
-          </div>
-          <p>Не ориентируются в корпоративных шаблонах, правилах и требованиях</p>
-        </div>
-
-        <div class="card">
-          <div class="head">
-            <span class="icon">🔒</span>
-            <h4>Риски безопасности</h4>
-          </div>
-          <p>Обрабатывают данные в облаке, что критично для on-prem и приватных репозиториев</p>
-        </div>
-      </div>
-
-      <div class="note">
-        Для enterprise-команд эти ограничения означают: стандартные CoPilots не решают ключевых задач, а иногда создают новые риски.
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== SOLUTION: RIVOO PILOTS ===== -->
-<section class="section" aria-labelledby="solution-title">
-<h2 id="solution-title" class="title">Rivoo Pilots — как мидл-разработчик, встроенный в ваш проект</h2>
-<p class="subtitle">
-      AI-агенты, обученные на ваших артефактах (код, ADR, Epic, требования), встраиваются в DevOps-стек, соблюдают traceability и возвращают готовые задачи на ревью. Без миграций и переучивания команды.
-    </p>
-
-  <div class="container">
-    <!-- LEFT column: pains solved -->
-    <div class="col">
-      <h3>Что убираем</h3>
-
-      <div class="point">
-        <span class="dot"></span>
-        <div>
-          <b>Хаос в процессе</b>
-          <span>Исключаем работу вне DevOps и без трассировки</span>
-        </div>
-      </div>
-
-      <div class="point">
-        <span class="dot"></span>
-        <div>
-          <b>Зависимость от облака</b>
-          <span>Rivoo Pilots могут работать локально и on-prem</span>
-        </div>
-      </div>
-
-      <div class="point">
-        <span class="dot"></span>
-        <div>
-          <b>Потеря стандартов</b>
-          <span>Внедряем проверку на проектные гайдлайны</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- CENTER: visual -->
-    <div class="visual" aria-hidden="false" aria-label="Rivoo Pilots: PO, SA, DEV, QA, CI/CD — в едином контексте проекта">
-        <svg class="art" viewBox="0 0 760 560" role="img">
-          <defs>
-            <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#FF8A65"></stop>
-              <stop offset="100%" stop-color="#6C63FF"></stop>
-            </linearGradient>
-            <linearGradient id="wire" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="rgba(255,255,255,.25)"></stop>
-              <stop offset="100%" stop-color="rgba(255,255,255,.55)"></stop>
-            </linearGradient>
-            <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="10" result="blur"></feGaussianBlur>
-              <feMerge><feMergeNode in="blur"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
-            </filter>
-            <g id="hex">
-              <polygon points="0,-34 30,-17 30,17 0,34 -30,17 -30,-17" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.10)"></polygon>
-            </g>
-            <g id="pilot">
-              <circle r="56" fill="url(#grad)"></circle>
-              <circle r="70" fill="none" stroke="url(#grad)" stroke-width="2" opacity=".6">
-                <animate attributeName="r" values="64;86;64" dur="4s" repeatCount="indefinite"></animate>
-                <animate attributeName="opacity" values=".6;0;.6" dur="4s" repeatCount="indefinite"></animate>
-              </circle>
-            </g>
-            <g id="role">
-              <use href="#hex"></use>
-              <circle r="6" fill="url(#grad)"></circle>
-            </g>
-          </defs>
-
-          <!-- faint isometric grid -->
-          <g opacity=".13" transform="translate(380,300) skewX(-30) scale(1,.88)">
-            <g fill="none" stroke="url(#wire)" stroke-width="1">
-              <path d="M-420 -180 H 420"></path>
-              <path d="M-420 -140 H 420"></path>
-              <path d="M-420 -100 H 420"></path>
-              <path d="M-420 -60 H 420"></path>
-              <path d="M-420 -20 H 420"></path>
-              <path d="M-420 20 H 420"></path>
-              <path d="M-420 60 H 420"></path>
-              <path d="M-420 100 H 420"></path>
-              <path d="M-420 140 H 420"></path>
-              <path d="M-420 180 H 420"></path>
-            </g>
-          </g>
-
-          <!-- center pilots node -->
-          <g transform="translate(380,280)" filter="url(#softGlow)">
-            <use href="#pilot"></use>
-            <text x="0" y="8" text-anchor="middle" fill="#101017" font-size="16" font-weight="800">RIVOO</text>
-            <text x="0" y="28" text-anchor="middle" fill="#101017" font-size="12" font-weight="800" letter-spacing=".6">PILOTS</text>
-          </g>
-
-          <!-- connections (animated dashes) -->
-          <g stroke="url(#grad)" stroke-linecap="round" stroke-width="2.8" stroke-dasharray="6 8">
-            <!-- to PO -->
-            <path d="M380 280 C 420 200, 520 190, 580 180">
-              <animate attributeName="stroke-dashoffset" values="0;-160" dur="3s" repeatCount="indefinite"></animate>
-            </path>
-            <!-- to SA -->
-            <path d="M380 280 C 300 210, 250 180, 200 160">
-              <animate attributeName="stroke-dashoffset" values="0;-160" dur="3.4s" repeatCount="indefinite"></animate>
-            </path>
-            <!-- to DEV -->
-            <path d="M380 280 C 330 330, 260 360, 210 400">
-              <animate attributeName="stroke-dashoffset" values="0;-140" dur="2.8s" repeatCount="indefinite"></animate>
-            </path>
-            <!-- to QA -->
-            <path d="M380 280 C 450 320, 520 360, 600 380">
-              <animate attributeName="stroke-dashoffset" values="0;-140" dur="3.2s" repeatCount="indefinite"></animate>
-            </path>
-            <!-- to CI/CD -->
-            <path d="M380 280 C 380 360, 380 440, 380 500">
-              <animate attributeName="stroke-dashoffset" values="0;-120" dur="2.6s" repeatCount="indefinite"></animate>
-            </path>
-          </g>
-
-          <!-- role nodes -->
-          <g>
-            <g transform="translate(600,170)">
-              <use href="#role"></use>
-              <text x="0" y="56" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="14" font-weight="700">PO</text>
-            </g>
-            <g transform="translate(200,150)">
-              <use href="#role"></use>
-              <text x="0" y="56" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="14" font-weight="700">SA</text>
-            </g>
-            <g transform="translate(200,410)">
-              <use href="#role"></use>
-              <text x="0" y="56" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="14" font-weight="700">DEV</text>
-            </g>
-            <g transform="translate(600,390)">
-              <use href="#role"></use>
-              <text x="0" y="56" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="14" font-weight="700">QA</text>
-            </g>
-            <g transform="translate(380,510)">
-              <use href="#role"></use>
-              <text x="0" y="56" text-anchor="middle" fill="rgba(255,255,255,.9)" font-size="14" font-weight="700">CI/CD</text>
-            </g>
-          </g>
-
-          <!-- external tool labels -->
-          <g font-size="12" fill="rgba(237,237,242,.9)" text-anchor="middle">
-            <text x="650" y="120">Jira</text>
-            <text x="120" y="220">Confluence</text>
-            <text x="120" y="460">GitHub</text>
-            <text x="680" y="450">Jenkins</text>
-            <text x="380" y="545">CI Pipeline</text>
-          </g>
-
-          <!-- tiny sparkles -->
-          <g fill="url(#grad)" opacity=".9">
-            <circle cx="520" cy="120" r="2">
-              <animate attributeName="opacity" values=".2;1;.2" dur="2.4s" repeatCount="indefinite"></animate>
-            </circle>
-            <circle cx="160" cy="260" r="2">
-              <animate attributeName="opacity" values=".2;1;.2" dur="2.8s" repeatCount="indefinite"></animate>
-            </circle>
-            <circle cx="700" cy="420" r="2">
-              <animate attributeName="opacity" values=".2;1;.2" dur="2.6s" repeatCount="indefinite"></animate>
-            </circle>
-          </g>
-        </svg>
-      </div>
-
-    <!-- RIGHT column: advantages -->
-    <div class="col">
-      <h3>Что даём</h3>
-
-      <div class="point">
-        <span class="dot"></span>
-        <div>
-          <b>Автономное выполнение задач</b>
-          <span>Берём Jira-таск, создаём артефакты и сдаём на ревью</span>
-        </div>
-      </div>
-
-      <div class="point">
-        <span class="dot"></span>
-        <div>
-          <b>Интеграция в DevOps</b>
-          <span>Плагины для Jira, GitHub, Confluence и CI/CD</span>
-        </div>
-      </div>
-
-      <div class="point">
-        <span class="dot"></span>
-        <div>
-          <b>Гарантированная traceability</b>
-          <span>Каждый артефакт привязан к требованию и задаче</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- KPI strip -->
-  <div class="kpis">
-    <div class="kpi">⏱ Сокращение времени на задачи до 40%</div>
-    <div class="kpi">✅ 100% соблюдение гайдлайнов</div>
-    <div class="kpi">🔒 On-prem и secure mode</div>
-  </div>
-</section>
-
-<!-- ===== RESULTS — "Результат" ===== -->
-<section aria-labelledby="res-title">
-  
-    <h2 id="res-title" class="title">Команда концентрируется на Delivery — остальное берут Rivoo Pilots</h2>
-    <p class="subtitle">
-      Отдайте задачи, на которые не хватало времени, и следите, как растут ключевые метрики.
-      Мы поднимаем Rivoo на ваших данных за несколько дней.
-    </p>
-
-  <div class="container">
-    <!-- 6 result badges -->
-    <div class="grid" role="list" aria-label="Что берет на себя Rivoo">
-      <article class="badge" role="listitem">
-        <span class="dot" aria-hidden="true"></span>
-        <div>
-          <b>Рефакторинг</b>
-          <span>Снижение техдолга и ускорение последующих релизов.</span>
-        </div>
-      </article>
-
-      <article class="badge" role="listitem">
-        <span class="dot" aria-hidden="true"></span>
-        <div>
-          <b>Тесты</b>
-          <span>Рост покрытия и меньше регрессий на релизах.</span>
-        </div>
-      </article>
-
-      <article class="badge" role="listitem">
-        <span class="dot" aria-hidden="true"></span>
-        <div>
-          <b>Документация</b>
-          <span>Актуальные артефакты и быстрый онбординг.</span>
-        </div>
-      </article>
-
-      <article class="badge" role="listitem">
-        <span class="dot" aria-hidden="true"></span>
-        <div>
-          <b>Детальные требования</b>
-          <span>Чёткие User Story и Test Case, меньше переездов.</span>
-        </div>
-      </article>
-
-      <article class="badge" role="listitem">
-        <span class="dot" aria-hidden="true"></span>
-        <div>
-          <b>Traceability</b>
-          <span>Связность артефактов и прозрачные обоснования.</span>
-        </div>
-      </article>
-
-      <article class="badge" role="listitem">
-        <span class="dot" aria-hidden="true"></span>
-        <div>
-          <b>Повторяющиеся ритуалы</b>
-          <span>Шаблоны и автоматизация рутины.</span>
-        </div>
-      </article>
-    </div>
-
-    <!-- KPI strip -->
-    <div class="kpis" aria-label="Ожидаемый эффект">
-      <div class="kpi">+ Test Coverage</div>
-      <div class="kpi">↑ Velocity по фичам</div>
-      <div class="kpi">+ Docs Coverage</div>
-    </div>
-
-    <!-- CTA row -->
-    <div class="ctaRow" aria-label="Действия">
-      <a class="btn btn-primary" href="#demo" aria-label="Запросить демо Rivoo">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M14 4l6 6-7 7-6-6 7-7z" stroke="currentColor" stroke-width="1.6"/>
-          <path d="M8 16l-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-        </svg>
-        Запросить демо
-      </a>
-      <a class="btn btn-secondary" href="#video" class="btn-video" data-video-url="https://www.youtube.com/watch?v=s-I1NWoBk6w" aria-label="Смотреть видео о продукте">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M8 6l10 6-10 6V6z" stroke="currentColor" stroke-width="1.6"/>
-        </svg>
-        Смотреть видео
-      </a>
-      <span class="aside">Запуск на ваших данных — за 2–3 дня</span>
-    </div>
-  </div>
-</section>
-
-<!-- ===== OPEN ARCHITECTURE ===== -->
-<section class="section" aria-labelledby="arch-title">
-  <div class="container">
-    <!-- LEFT: architecture image -->
-    <figure>
-      <img src="0518a7db-2069-4350-a599-07c22ad5ac3e.png" alt="Схема открытой архитектуры Rivoo" class="art">
-      <figcaption>Архитектура Rivoo Pilots</figcaption>
-    </figure>
-
-    <!-- RIGHT: explanation -->
-    <div class="content">
-      <h2 id="arch-title" class="title">Открытая архитектура</h2>
-      <p class="subtitle">
-        Rivoo Pilots построены по принципу открытой архитектуры — они легко интегрируются в существующую DevOps-среду, поддерживают кастомизацию и безопасно работают on-prem.
-      </p>
-
-      <!-- Group 1: Core -->
-      <div class="group">
-        <h3>Ядро системы</h3>
-        <div class="list">
-          <div class="item">
-            <span class="icon">⚙️</span>
-            <div>
-              <b>Engine</b>
-              <span>Модуль автономного выполнения задач</span>
-            </div>
-          </div>
-          <div class="item">
-            <span class="icon">🧠</span>
-            <div>
-              <b>AI-модели</b>
-              <span>Работа в secure/on-prem режиме</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Group 2: Интеграции -->
-      <div class="group">
-        <h3>Интеграции</h3>
-        <div class="list">
-          <div class="item">
-            <span class="icon">📋</span>
-            <div>
-              <b>Jira</b>
-              <span>Чтение/обновление задач, трекинг статусов</span>
-            </div>
-          </div>
-          <div class="item">
-            <span class="icon">💻</span>
-            <div>
-              <b>GitHub / GitLab</b>
-              <span>Pull Request, Code Review, CI/CD</span>
-            </div>
-          </div>
-          <div class="item">
-            <span class="icon">📚</span>
-            <div>
-              <b>Confluence</b>
-              <span>Создание и обновление документации</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Group 3: Расширения -->
-      <div class="group">
-        <h3>Расширения</h3>
-        <div class="list">
-          <div class="item">
-            <span class="icon">🔌</span>
-            <div>
-              <b>API</b>
-              <span>Подключение кастомных модулей</span>
-            </div>
-          </div>
-          <div class="item">
-            <span class="icon">🛠️</span>
-            <div>
-              <b>SDK</b>
-              <span>Разработка собственных плагинов</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===== PRICING ===== -->
-<section class="section" aria-labelledby="pricing-title">
-
-    <h2 id="pricing-title" class="title">Тарифы</h2>
-    <p class="subtitle">Все тарифы — подписка помесячно на инженера + разовое внедрение. Выберите пакет под размер и требования вашей команды.</p>
-
-  <div class="container">
-    <div class="grid">
-      <!-- STARTER -->
-      <article class="card" aria-label="Тариф Starter">
-        <div class="ribbon" aria-hidden="true"></div>
-
-        <div class="plan">
-          <h3>Starter</h3>
-          <span class="aud">Стартапы, 3–15 чел.</span>
-        </div>
-
-        <div class="price">
-          <span class="num">$49</span>
-          <span class="per">/ инженера в месяц</span>
-        </div>
-        <div class="impl">Разовое внедрение: <b>$1 000</b></div>
-
-        <ul class="list">
-          <li>
-            <span class="tick" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                <path d="M6 12l4 4 8-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
-              </svg>
-            </span>
-            Code- & Test-Pilots
-          </li>
-          <li>
-            <span class="tick" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                <path d="M6 12l4 4 8-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
-              </svg>
-            </span>
-            Базовая трассировка
-          </li>
-          <li class="muted">
-            <span class="tick" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                <path d="M6 12l4 4 8-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
-              </svg>
-            </span>
-            SaaS-развёртывание
-          </li>
-        </ul>
-
-        <div class="cta">
-          <a class="btn btn-primary" href="#demo">Запросить демо</a>
-          <a class="btn btn-secondary" href="#deck.pdf" data-download="/RIVOO_Deck.pdf">Скачать презентацию</a>
-        </div>
-      </article>
-
-      <!-- GROWTH (highlight) -->
-      <article class="card highlight" aria-label="Тариф Growth">
-        <div class="ribbon" aria-hidden="true"></div>
-
-        <div class="plan">
-          <h3>Growth</h3>
-          <span class="aud">Продуктовые команды, 16–25 чел.</span>
-        </div>
-
-        <div class="price">
-          <span class="num">$80</span>
-          <span class="per">/ инженера в месяц</span>
-        </div>
-        <div class="impl">Разовое внедрение: <b>$2 400</b></div>
-
-        <ul class="list">
-          <li>
-            <span class="tick" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                <path d="M6 12l4 4 8-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
-              </svg>
-            </span>
-            + Backlog/DevOps CoPilots
-          </li>
-          <li>
-            <span class="tick" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                <path d="M6 12l4 4 8-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
-              </svg>
-            </span>
-            CI/CD шаблоны
-          </li>
-          <li class="muted">
-            <span class="tick" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                <path d="M6 12l4 4 8-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
-              </svg>
-            </span>
-            SaaS Source of Truth
-          </li>
-        </ul>
-
-        <div class="cta">
-          <a class="btn btn-primary" href="#demo">Запросить демо</a>
-          <a class="btn btn-secondary" href="#deck.pdf" data-download="/RIVOO_Deck.pdf">Скачать презентацию</a>
-        </div>
-      </article>
-
-      <!-- PRIVATE -->
-      <article class="card" aria-label="Тариф Private">
-        <div class="ribbon" aria-hidden="true"></div>
-
-        <div class="plan">
-          <h3>Private</h3>
-          <span class="aud">Финтех, телеком, гос-сектор</span>
-        </div>
-
-        <div class="price">
-          <span class="num">$100</span>
-          <span class="per">/ инженера в месяц</span>
-        </div>
-        <div class="impl">Разовое внедрение: <b>$20 000</b> <span class="muted">(включает Helm-чарт, кастомный rollout)</span></div>
-
-        <ul class="list">
-          <li>
-            <span class="tick" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                <path d="M6 12l4 4 8-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
-              </svg>
-            </span>
-            On-prem развертывание
-          </li>
-          <li>
-            <span class="tick" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                <path d="M6 12l4 4 8-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
-              </svg>
-            </span>
-            Governance-модуль и AI-контроль
-          </li>
-          <li class="muted">
-            <span class="tick" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                <path d="M6 12l4 4 8-8" stroke="white" stroke-width="3" stroke-linecap="round"/>
-              </svg>
-            </span>
-            Поддержка SLA
-          </li>
-        </ul>
-
-        <div class="cta">
-          <a class="btn btn-primary" href="#demo">Запросить демо</a>
-          <a class="btn btn-secondary" href="#deck.pdf" data-download="/RIVOO_Deck.pdf">Скачать презентацию</a>
-        </div>
-      </article>
-    </div>
-   </div>
-
-<div class="container">
-    <p class="note">
-      Цены — ориентиры по подписке на инженера в месяц; внедрение оплачивается отдельно разовым платежом. Состав пакетов и условия соответствуют вашему прайс-слайду (Starter/Growth/Private, включения и аудитории).
-    </p>
-  </div>
-</section>
-
-<!-- ===== CTA ===== -->
-<section class="cta-section" aria-labelledby="cta-title">
-  
-    <h2 id="cta-title" class="cta-title">Готовы запустить Rivoo Pilots в вашей команде?</h2>
-
-    <p class="cta-subtitle">
-      Получите демо-версию и презентацию, чтобы увидеть, как Rivoo автоматизирует задачи, соблюдает ваши гайдлайны и безопасно интегрируется в DevOps-процессы.
-    </p>
-
-    <div class="cta-buttons">
-      <a href="#demo" class="btn btn-primary">Запросить демо</a>
-      <a href="#deck.pdf" data-download="/RIVOO_Deck.pdf" class="btn btn-secondary">Скачать презентацию</a>
-    </div>
-  
-</section>
-
-
-<!-- ===== FOOTER ===== -->
-<footer>
-  <div class="footer-container">
-    <!-- Column 1: Logo + Description -->
-    <div>
-      <div class="logo">RIVOO</div>
-      <p class="desc">
-        Новое поколение AI Pilots для команд разработки. Автономное выполнение задач, следование гайдлайнам и безопасная интеграция в вашу DevOps-среду.
-      </p>
-    </div>
-
-    <!-- Column 2: Навигация -->
-    <div>
-      <div class="footer-title">Навигация</div>
-      <ul class="footer-list">
-        <li><a href="#features">Возможности</a></li>
-        <li><a href="#pricing-title">Тарифы</a></li>
-        <li><a href="#arch-title">Архитектура</a></li>
-        <li><a href="#cta-title">Контакты</a></li>
-      </ul>
-    </div>
-
-    <!-- Column 3: Ресурсы -->
-    <div>
-      <div class="footer-title">Ресурсы</div>
-      <ul class="footer-list">
-        <li><a href="#deck.pdf" data-download="/RIVOO_Deck.pdf">Скачать презентацию</a></li>
-        <li><a href="#demo">Запросить демо</a></li>
-        <li><a href="https://youtube.com" target="_blank" rel="noopener">Видео</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    © 2025 RIVOO. Все права защищены.
-  </div>
-</footer>
-
-<!-- Demo request modal -->
-<!-- ===== DEMO REQUEST MODAL (Yandex Forms embed) ===== -->
-<!-- Overlay -->
-<div id="demo-modal-overlay" hidden></div>
-
-<!-- Modal -->
-<div id="demo-modal" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title" hidden>
-  <div class="panel">
-    <header>
-      <h3 id="demo-modal-title" class="title">Запросить демо</h3>
-      <button class="close" type="button" data-close-demo aria-label="Закрыть модальное окно">Закрыть</button>
-    </header>
-
-    <div class="body">
-      <!-- Встроенная Яндекс Форма -->
-      <div class="iframe-wrap loading">
-        <!-- ЗАМЕНИТЕ XXXXXXXXXXXX на ID вашей формы (Публичная ссылка → forms.yandex.ru/u/XXXXXXXXXXXX/) -->
-        <iframe
-          id="ya-form"
-          src="https://forms.yandex.ru/u/689cd8284936390100d57166/?iframe=1"
-          title="Заявка на демо Rivoo"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          style="display:block;width:100%;height:70vh;border:0;"
-          allow="clipboard-write"
-        ></iframe>
-      </div>
-
-      <!-- Фолбэк для пользователей без JS -->
-      <noscript>
-        Форма для заявки: <a href="https://forms.yandex.ru/u/XXXXXXXXXXXX/" target="_blank" rel="noopener">открыть по ссылке</a>
-      </noscript>
-    </div>
-  </div>
-</div>
-
-
-  <!-- External JS (no inline scripts) -->
-  <script defer src="rivoo.js"></script>
 </body>
 </html>

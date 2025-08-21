@@ -1,0 +1,1139 @@
+/* ==========================================================================
+   RIVOO Landing — Shared Styles for HEADER + HERO + PROBLEM
+   Split build: this is the CSS file (no HTML/JS here)
+   ========================================================================== */
+
+/* ------------------------------
+   Root variables & base
+------------------------------ */
+:root{
+  --bg:#0B0B0E;
+  --panel:#0F0F13;        /* header panel */
+  --card:#141419;         /* hero card-ish surfaces */
+  --panelSoft:#13131A;
+  --muted:#B0B0B5;
+  --white:#fff;
+  --grad-a:#FF8A65;       /* peach */
+  --grad-b:#6C63FF;       /* violet */
+  --radius:14px;
+  --shadow:0 0 24px rgba(108,99,255,.18);
+  --shadow-strong:0 8px 28px rgba(0,0,0,.28);
+  --line:rgba(255,255,255,.06);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  color:var(--white);
+  background:
+    radial-gradient(1200px 700px at 85% 10%, rgba(108,99,255,.15) 0%, rgba(108,99,255,0) 60%),
+    radial-gradient(900px 600px at 15% 90%, rgba(255,138,101,.12) 0%, rgba(255,138,101,0) 60%),
+    var(--bg);
+  overflow-x:hidden;
+}
+a{color:inherit; text-decoration:none}
+
+/* ==========================================================================
+   HEADER (namespace: hd- for CTA; other classes scoped to header tree)
+   HTML structure:
+   <header.header> .container > .logo .mark | nav.nav > ul.navlist + .hd-cta + .burger
+   ========================================================================== */
+.header{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter:saturate(160%) blur(10px);
+  background:linear-gradient(180deg, rgba(15,15,19,.86), rgba(15,15,19,.70));
+  border-bottom:1px solid var(--line);
+}
+.container{
+  max-width:1200px; margin:0 auto; padding:10px 16px; display:flex; align-items:center; gap:12px;
+}
+.logo{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:6px 14px; border-radius:999px;
+  background:linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 0 0 1px rgba(255,255,255,.02) inset;
+  transition:transform .15s ease;
+}
+.logo:hover{transform:translateY(-1px)}
+.mark{
+  font-weight:700; letter-spacing:2px; font-size:18px;
+  background:linear-gradient(135deg, var(--grad-a), var(--grad-b));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-transform:uppercase;
+}
+
+.nav{margin-left:auto; display:flex; align-items:center; gap:8px;}
+.navlist{
+  display:flex; align-items:center; gap:2px; list-style:none; margin:0; padding:0;
+}
+.navlist a{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:10px 12px; border-radius:10px; color:#EDEDF2; font-weight:600; font-size:14px;
+  border:1px solid transparent;
+}
+.navlist a:hover{border-color:rgba(255,255,255,.10); background:rgba(255,255,255,.04)}
+
+/* was .cta -> renamed to .hd-cta to avoid conflicts */
+.hd-cta{
+  margin-left:6px; display:inline-flex; align-items:center; gap:10px;
+  padding:10px 14px; font-weight:700; font-size:14px; border-radius:10px;
+  background:linear-gradient(135deg, var(--grad-a), var(--grad-b));
+  color:var(--white); box-shadow:0 10px 26px rgba(108,99,255,.32), inset 0 0 0 1px rgba(255,255,255,.06);
+  transition:filter .15s ease, transform .15s ease;
+}
+.hd-cta:hover{filter:brightness(1.06); transform:translateY(-1px)}
+.hd-cta svg{opacity:.95}
+
+.burger{
+  display:none; width:42px; height:38px; border-radius:10px; border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.04); align-items:center; justify-content:center;
+}
+.burger span, .burger::before, .burger::after{
+  content:""; display:block; width:20px; height:2px; background:#EDEDF2; border-radius:2px; transition:transform .2s ease, opacity .2s ease;
+}
+.burger span{position:relative}
+.burger::before{position:absolute; transform:translateY(-6px)}
+.burger::after{position:absolute; transform:translateY(6px)}
+
+.sheet{
+  display:none; position:fixed; inset:60px 10px auto 10px; background:rgba(17,17,22,.98);
+  border:1px solid rgba(255,255,255,.08); border-radius:14px; box-shadow:var(--shadow-strong);
+  padding:10px; z-index:60;
+}
+.sheet a{display:block; padding:12px 10px; border-radius:10px; color:#EDEDF2; font-weight:600}
+.sheet a:hover{background:rgba(255,255,255,.05)}
+.sheet .sheet-cta{margin:8px 0 2px; text-align:center}
+
+/* Header responsive */
+@media (max-width: 980px){
+  .navlist{display:none}
+  .burger{display:inline-flex}
+  .hd-cta{display:none}
+  .sheet.open{display:block}
+}
+
+/* ==========================================================================
+   HERO (kept distinct: .hero-cta for buttons; .btn shared only in hero scope)
+   HTML structure:
+   <main.hero> <section.right>[SVG]</section> <section.left>h1 .bullets .hero-cta</section>
+   ========================================================================== */
+.hero{
+  position:relative; min-height:90dvh;
+  display:grid; grid-template-columns: 1.05fr 1fr; gap:min(6vw,64px);
+  align-items:center; padding:clamp(20px,4vw,48px); isolation:isolate;
+}
+.hero::before{
+  content:""; position:absolute; inset:-40vmax -40vmax;
+  background:
+    radial-gradient(60vmax 60vmax at 110% -10%, rgba(108,99,255,.25), rgba(108,99,255,0) 60%),
+    radial-gradient(50vmax 40vmax at -10% 120%, rgba(255,138,101,.22), rgba(255,138,101,0) 60%);
+  filter:saturate(120%) blur(2px); z-index:-2; animation:pan 24s linear infinite alternate; opacity:.8;
+}
+.hero::after{
+  content:""; position:absolute; inset:0;
+  background:
+    linear-gradient(transparent 0 60%, rgba(255,255,255,.06) 60% 60.5%, transparent 60.5% 100%),
+    linear-gradient(90deg, transparent 0 60%, rgba(255,255,255,.06) 60% 60.5%, transparent 60.5% 100%);
+  background-size: 32px 32px, 32px 32px;
+  mask: radial-gradient(50% 50% at 70% 70%, rgba(0,0,0,.65), transparent 68%);
+  opacity:.25; z-index:-1; animation:gridFloat 18s ease-in-out infinite alternate;
+}
+@keyframes pan{to{transform:translate3d(2%, -1%, 0)}}
+@keyframes gridFloat{to{transform:translateY(-2%)}}
+
+.left{max-width: 760px;}
+h1{
+  margin:0 0 18px;
+  font-size: clamp(32px, 5.2vw, 56px);
+  line-height:1.08;
+  letter-spacing:.2px;
+}
+.grad{
+  background:linear-gradient(135deg, var(--grad-a), var(--grad-b));
+  -webkit-background-clip:text; background-clip:text;
+  color:transparent;
+  text-shadow:0 0 18px rgba(108,99,255,.25);
+}
+.subtitle{
+  margin:0 0 22px;
+  color:var(--muted);
+  font-size: clamp(16px, 1.6vw, 20px);
+  line-height:1.5;
+  max-width: 58ch;
+}
+.bullets{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:14px;
+  margin:24px 0 26px;
+}
+.chip{
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px;
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:999px;
+  color:#E9E9EC;
+  font-size:14px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(6px);
+  width:100%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.chip svg{flex:0 0 18px; opacity:.9}
+
+/* hero actions */
+.hero-cta{
+  display:flex; flex-wrap:wrap; gap:12px;
+  align-items:center;
+  margin-top:4px;
+}
+.btn{
+  --pad: 14px 20px;
+  display:inline-flex; align-items:center; gap:10px;
+  padding:var(--pad);
+  font-weight:600;
+  border-radius:10px;
+  text-decoration:none;
+  transition:transform .15s ease, filter .15s ease, box-shadow .2s ease, background .2s ease;
+  will-change:transform, filter;
+}
+.btn-primary{
+  background:linear-gradient(135deg, var(--grad-a), var(--grad-b));
+  color:var(--white);
+  box-shadow: 0 8px 24px rgba(108,99,255,.32), inset 0 0 0 1px rgba(255,255,255,.06);
+}
+.btn-primary:hover{filter:brightness(1.05); transform:translateY(-1px)}
+.btn-secondary{
+  color:var(--white); background:transparent;
+  border:1.2px solid transparent;
+  background-image:
+    linear-gradient(var(--bg), var(--bg)),
+    linear-gradient(135deg, rgba(255,138,101,.9), rgba(108,99,255,.9));
+  background-origin:border-box;
+  background-clip:padding-box, border-box;
+}
+.btn-secondary:hover{transform:translateY(-1px)}
+
+.right{position:relative; min-height: 420px;}
+.art{width:100%; height:auto; display:block; filter: drop-shadow(0 20px 40px rgba(0,0,0,.6));}
+.glow{
+  position:absolute; inset:auto 0 -10% 0; height:40%;
+  background: radial-gradient(40% 60% at 50% 0%, rgba(108,99,255,.45), rgba(108,99,255,0));
+  filter: blur(18px); pointer-events:none; opacity:.8;
+}
+
+/* Отключаем заливку у всех кривых внутри HERO-SVG */
+svg path {
+  fill: none;
+}
+
+@media (max-width: 980px){
+  .hero{grid-template-columns:1fr; padding:clamp(18px,5vw,40px)}
+  .right{order:-1; min-height:380px;}
+  .bullets{grid-template-columns:1fr}
+  .hero-cta .btn{width:100%; justify-content:center; --pad: 14px 16px;}
+}
+@media (prefers-reduced-motion:reduce){
+  .hero::before,.hero::after{animation:none}
+  .btn, .chip{transition:none}
+}
+
+/* ==========================================================================
+   PROBLEM block (namespace: prob-)
+   HTML structure:
+   <section.prob-section> .prob-container > text + visual grid (prob-grid -> prob-col)
+   ========================================================================== */
+.prob-section{
+  padding: clamp(28px, 5vw, 72px) clamp(18px, 5vw, 48px);
+  background:
+    radial-gradient(800px 480px at 10% 20%, rgba(255,138,101,.08), transparent 60%),
+    radial-gradient(800px 520px at 90% 90%, rgba(108,99,255,.08), transparent 60%),
+    linear-gradient(180deg, #0C0C10, #0C0C10);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.prob-container{
+  max-width:1200px; margin:0 auto;
+  display:grid; grid-template-columns: 1.05fr 1fr;
+  gap: clamp(20px, 4vw, 56px);
+}
+.prob-title{
+  margin:0 0 10px; font-size: clamp(24px, 3.2vw, 36px);
+  line-height:1.2; letter-spacing:.2px;
+}
+.prob-subtitle{
+  margin:0 0 22px; color:var(--muted);
+  font-size: clamp(15px, 1.5vw, 18px); line-height:1.55; max-width: 62ch;
+}
+
+/* right visual */
+.prob-grid{
+  display:grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(14px, 2.5vw, 24px);
+  align-content:start;
+}
+.prob-col{
+  background:var(--panelSoft); border:1px solid var(--line); border-radius: var(--radius); overflow:hidden;
+}
+.prob-col header{
+  padding:14px 16px; border-bottom:1px solid var(--line);
+  display:flex; align-items:center; gap:10px;
+  font-weight:700; letter-spacing:.3px;
+}
+.prob-col header .tag{
+  width:10px; height:10px; border-radius:50%;
+  background:linear-gradient(135deg, var(--grad-a), var(--grad-b));
+  box-shadow:0 0 0 1px rgba(255,255,255,.06) inset;
+}
+.prob-col.process header .tag{
+  background:linear-gradient(135deg, rgba(255,255,255,.25), rgba(255,255,255,.06));
+}
+.prob-stack{display:grid; gap:10px; padding:12px; position:relative}
+.prob-card{
+  padding:12px 14px; background:#0F0F15; border:1px solid var(--line); border-radius:10px;
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+.prob-label{font-weight:600}
+.prob-state{
+  font-size:12px; color:var(--muted);
+  padding:4px 8px; border-radius:999px; border:1px solid var(--line);
+  background:rgba(255,255,255,.02)
+}
+/* Feature column brighter */
+.prob-col.feature .prob-card{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02))}
+.prob-col.feature .prob-card .prob-state{border-color:rgba(255,255,255,.16)}
+/* Process column fades downwards */
+.prob-col.process .prob-card:nth-child(n+4){opacity:.65}
+.prob-col.process .prob-card:nth-child(n+5){opacity:.4}
+.prob-col.process .prob-stack::after{
+  content:""; position:absolute; inset:auto 0 0 0; height:42%;
+  background:linear-gradient(180deg, transparent, rgba(0,0,0,.45));
+  pointer-events:none;
+}
+
+/* legend */
+.prob-legend{
+  display:flex; gap:14px; align-items:center;
+  color:var(--muted); font-size:13px; margin-top:10px
+}
+.prob-legend .prob-swatch{
+  width:10px; height:10px; border-radius:2px;
+  background:linear-gradient(135deg, var(--grad-a), var(--grad-b))
+}
+.prob-legend .prob-swatch.muted{background:rgba(255,255,255,.18)}
+
+/* problem responsive */
+@media (max-width: 980px){
+  .prob-container{grid-template-columns:1fr; gap:26px}
+  .prob-grid{grid-template-columns:1fr}
+}
+
+/* ==========================================================================
+   WHY COPILOTS FAIL (scoped by aria-labelledby="why-title")
+   HTML root: <section class="section" aria-labelledby="why-title"> … </section>
+   This block only ADDS styles; existing blocks remain untouched.
+   ========================================================================== */
+
+/* Section wrapper */
+section[aria-labelledby="why-title"]{
+  padding: clamp(28px, 5vw, 80px) clamp(18px, 5vw, 48px);
+  background:
+    radial-gradient(900px 560px at 15% 10%, rgba(108,99,255,.10), transparent 60%),
+    radial-gradient(700px 480px at 95% 90%, rgba(255,138,101,.08), transparent 60%),
+    linear-gradient(180deg, #0C0C10, #0C0C10);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+/* Local container overrides .container from header */
+section[aria-labelledby="why-title"] .container{
+  max-width:1200px; margin:0 auto;
+  display:grid; grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(20px, 4vw, 56px);
+  align-items:start;
+}
+
+/* Local headings */
+section[aria-labelledby="why-title"] .title{
+  margin:0 0 10px;
+  font-size: clamp(24px, 3.2vw, 36px);
+  line-height:1.2; letter-spacing:.2px
+}
+section[aria-labelledby="why-title"] .subtitle{
+  margin:0 0 24px; color:var(--muted);
+  font-size: clamp(15px, 1.5vw, 18px); line-height:1.55; max-width: 66ch
+}
+
+/* Left: Myth vs Reality ribbon */
+section[aria-labelledby="why-title"] .ribbon{position:relative; display:grid; gap:14px}
+section[aria-labelledby="why-title"] .ribbon::before{
+  content:""; position:absolute; inset:-8px -12px -8px -18px; z-index:-1;
+  background:linear-gradient(-8deg, rgba(255,255,255,.02), rgba(255,255,255,0) 60%);
+  border:1px solid rgba(255,255,255,.04);
+  border-left-color: rgba(255,255,255,.06);
+  border-radius:18px; transform:skewX(-2deg);
+}
+section[aria-labelledby="why-title"] .strip{
+  background:var(--panel); border:1px solid var(--line); border-radius: var(--radius);
+  padding:14px 16px; box-shadow: var(--shadow); overflow:hidden;
+}
+section[aria-labelledby="why-title"] .strip + .strip{margin-top:2px}
+section[aria-labelledby="why-title"] .strip header{
+  display:flex; align-items:center; gap:10px; margin-bottom:10px;
+  font-weight:700; letter-spacing:.2px;
+}
+section[aria-labelledby="why-title"] .myth,
+section[aria-labelledby="why-title"] .reality{
+  display:flex; gap:10px; align-items:flex-start; padding:10px 12px; border-radius:10px; position:relative;
+}
+section[aria-labelledby="why-title"] .myth{
+  background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.06);
+}
+section[aria-labelledby="why-title"] .reality{
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.10);
+}
+section[aria-labelledby="why-title"] .reality::before{
+  content:""; position:absolute; inset:0 auto 0 0; width:6px; border-radius:8px 0 0 8px;
+  background:linear-gradient(135deg, var(--grad-a), var(--grad-b));
+}
+section[aria-labelledby="why-title"] .badge{
+  flex:0 0 10px; height:10px; border-radius:50%;
+  background:linear-gradient(135deg, var(--grad-a), var(--grad-b)); margin-top:6px;
+}
+section[aria-labelledby="why-title"] .badge.myth{background:rgba(255,255,255,.3)}
+section[aria-labelledby="why-title"] .text b{display:block; margin-bottom:2px}
+section[aria-labelledby="why-title"] .text span{color:var(--muted)}
+
+/* Right: 2x2 barriers grid */
+section[aria-labelledby="why-title"] .grid{
+  display:grid; grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: clamp(12px, 2.2vw, 20px);
+}
+section[aria-labelledby="why-title"] .card{
+  position:relative; background:#14141B;
+  border:1px solid var(--line); border-radius: var(--radius);
+  padding:16px 16px 14px; box-shadow: var(--shadow);
+  overflow:hidden; min-height:142px;
+}
+section[aria-labelledby="why-title"] .card::before{
+  content:""; position:absolute; top:-28px; left:-20px; width:160px; height:90px;
+  background:linear-gradient(135deg, rgba(255,138,101,.55), rgba(108,99,255,.55));
+  filter: blur(22px); transform:rotate(-8deg); opacity:.22; pointer-events:none;
+}
+section[aria-labelledby="why-title"] .card .head{
+  display:flex; align-items:center; gap:10px; margin-bottom:8px;
+}
+section[aria-labelledby="why-title"] .icon{
+  width:18px; height:18px; display:inline-flex; align-items:center; justify-content:center; opacity:.9;
+  color:#EDEDF2;
+}
+section[aria-labelledby="why-title"] .card h4{margin:0; font-size:16px}
+section[aria-labelledby="why-title"] .card p{margin:6px 0 0; color:var(--muted); font-size:14px; line-height:1.45}
+
+/* Enterprise note */
+section[aria-labelledby="why-title"] .note{
+  margin-top:16px; padding:12px 14px; border-radius:12px;
+  background:rgba(255,255,255,.02); border:1px solid var(--line);
+  color:#DADAE0; font-size:13px;
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  section[aria-labelledby="why-title"] .container{grid-template-columns:1fr; gap:26px}
+  section[aria-labelledby="why-title"] .grid{grid-template-columns:1fr}
+  section[aria-labelledby="why-title"] .strip{padding:12px 14px}
+  section[aria-labelledby="why-title"] .card{min-height:auto}
+}
+
+/* ==========================================================================
+   SOLUTION — RIVOO PILOTS
+   HTML root: <section aria-labelledby="solution-title"> … </section>
+   ========================================================================== */
+
+/* Section wrapper */
+section[aria-labelledby="solution-title"]{
+  padding: clamp(28px, 5vw, 84px) clamp(18px, 5vw, 48px);
+  background:
+    radial-gradient(900px 560px at 50% 0%, rgba(108,99,255,.10), transparent 60%),
+    radial-gradient(800px 520px at 10% 95%, rgba(255,138,101,.08), transparent 60%),
+    linear-gradient(180deg, #0C0C10, #0C0C10);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+/* Local container (не конфликтует с .container шапки) */
+section[aria-labelledby="solution-title"] .container{
+  max-width:1200px; margin:0 auto;
+  display:grid;
+  grid-template-columns: 0.9fr 1.2fr 0.9fr;
+  gap: clamp(16px, 3.8vw, 40px);
+  align-items:center;
+}
+
+/* Headings */
+section[aria-labelledby="solution-title"] .title{
+  margin:0 0 8px;
+  font-size: clamp(24px, 3.1vw, 36px);
+  line-height:1.2; letter-spacing:.2px;
+  text-align:center;
+}
+section[aria-labelledby="solution-title"] .subtitle{
+  margin:0 auto 28px; color:var(--muted);
+  font-size: clamp(15px, 1.5vw, 18px); line-height:1.55;
+  max-width: 72ch; text-align:center;
+}
+
+/* Side columns */
+section[aria-labelledby="solution-title"] .col{
+  display:grid; gap:12px; align-content:center;
+}
+section[aria-labelledby="solution-title"] .col h3{
+  margin:0 0 4px; font-size:14px; text-transform:uppercase;
+  letter-spacing:.8px; color:#DFDFE6; opacity:.95;
+}
+
+/* Points */
+section[aria-labelledby="solution-title"] .point{
+  display:flex; gap:10px; align-items:flex-start;
+  padding:12px 12px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:12px; box-shadow:var(--shadow);
+}
+section[aria-labelledby="solution-title"] .dot{
+  flex:0 0 10px; height:10px; border-radius:50%;
+  background:linear-gradient(135deg, var(--grad-a), var(--grad-b));
+  margin-top:6px;
+}
+section[aria-labelledby="solution-title"] .point b{display:block; margin-bottom:2px}
+section[aria-labelledby="solution-title"] .point span{color:var(--muted)}
+
+/* Center visual */
+section[aria-labelledby="solution-title"] .visual{
+  position:relative;
+  background:#14141B;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:16px; box-shadow:var(--shadow);
+}
+section[aria-labelledby="solution-title"] .visual::after{
+  content:""; position:absolute; inset:auto 20% -8% 20%; height:18%;
+  background:radial-gradient(60% 80% at 50% 0%, rgba(108,99,255,.35), rgba(108,99,255,0));
+  filter:blur(18px); pointer-events:none;
+}
+section[aria-labelledby="solution-title"] .art{
+  width:100%; height:auto; display:block;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,.55));
+}
+
+/* KPI strip */
+section[aria-labelledby="solution-title"] .kpis{
+  margin:24px auto 0; display:flex; gap:10px;
+  justify-content:center; flex-wrap:wrap;
+}
+section[aria-labelledby="solution-title"] .kpi{
+  padding:10px 12px; border:1px solid var(--line); border-radius:999px;
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  color:#EDEDF2; font-weight:700; font-size:14px;
+}
+
+/* Responsive */
+@media (max-width: 1100px){
+  section[aria-labelledby="solution-title"] .container{
+    grid-template-columns: 1fr; align-items:start;
+  }
+  section[aria-labelledby="solution-title"] .col{order:2}
+  section[aria-labelledby="solution-title"] .visual{order:1}
+}
+
+
+/* ==========================================================================
+   RESULTS — "Результат"
+   HTML root: <section aria-labelledby="res-title"> … </section>
+   ========================================================================== */
+
+section[aria-labelledby="res-title"] {
+  padding: clamp(28px, 5vw, 84px) clamp(18px, 5vw, 48px);
+  background:
+    radial-gradient(1000px 560px at 50% 0%, rgba(108,99,255,.10), transparent 60%),
+    radial-gradient(800px 520px at 10% 95%, rgba(255,138,101,.08), transparent 60%),
+    linear-gradient(180deg, #0C0C10, #0C0C10);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+section[aria-labelledby="res-title"] .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+section[aria-labelledby="res-title"] .title {
+  margin: 0 0 8px;
+  font-size: clamp(24px, 3.1vw, 36px);
+  line-height: 1.2;
+  letter-spacing: .2px;
+  text-align: center;
+}
+
+section[aria-labelledby="res-title"] .subtitle {
+  margin: 0 auto 26px;
+  color: var(--muted);
+  font-size: clamp(15px, 1.5vw, 18px);
+  line-height: 1.55;
+  max-width: 70ch;
+  text-align: center;
+}
+
+/* Results grid */
+section[aria-labelledby="res-title"] .grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: clamp(12px, 2.4vw, 18px);
+  margin-top: 18px;
+}
+
+section[aria-labelledby="res-title"] .badge {
+  position: relative;
+  background: var(--panelSoft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 14px;
+  box-shadow: var(--shadow);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  transition: box-shadow .2s ease, transform .15s ease;
+}
+
+section[aria-labelledby="res-title"] .badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 40px rgba(0,0,0,.42);
+}
+
+section[aria-labelledby="res-title"] .badge::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255,138,101,.25), rgba(108,99,255,.25));
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  padding: 1px;
+  opacity: .35;
+}
+
+section[aria-labelledby="res-title"] .dot {
+  flex: 0 0 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--grad-a), var(--grad-b));
+  margin-top: 6px;
+}
+
+section[aria-labelledby="res-title"] .badge b {
+  display: block;
+  margin-bottom: 2px;
+}
+
+section[aria-labelledby="res-title"] .badge span {
+  color: var(--muted);
+}
+
+/* KPI strip */
+section[aria-labelledby="res-title"] .kpis {
+  margin: 24px auto 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+section[aria-labelledby="res-title"] .kpi {
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  color: #EDEDF2;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: var(--shadow);
+}
+
+/* CTA row */
+section[aria-labelledby="res-title"] .ctaRow {
+  margin-top: 22px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+section[aria-labelledby="res-title"] .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: transform .15s ease, filter .15s ease, box-shadow .2s ease;
+}
+
+section[aria-labelledby="res-title"] .btn-primary {
+  background: linear-gradient(135deg, var(--grad-a), var(--grad-b));
+  color: #fff;
+  box-shadow: 0 10px 26px rgba(108,99,255,.32), inset 0 0 0 1px rgba(255,255,255,.06);
+}
+
+section[aria-labelledby="res-title"] .btn-primary:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+section[aria-labelledby="res-title"] .btn-secondary {
+  color: #fff;
+  background: transparent;
+  border: 1.2px solid transparent;
+  background-image:
+    linear-gradient(var(--panel), var(--panel)),
+    linear-gradient(135deg, rgba(255,138,101,.9), rgba(108,99,255,.9));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+
+section[aria-labelledby="res-title"] .aside {
+  color: var(--muted);
+  font-size: 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: rgba(255,255,255,.02);
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  section[aria-labelledby="res-title"] .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  section[aria-labelledby="res-title"] .grid {
+    grid-template-columns: 1fr;
+  }
+  section[aria-labelledby="res-title"] .aside {
+    width: 100%;
+    text-align: center;
+  }
+  section[aria-labelledby="res-title"] .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
+   OPEN ARCHITECTURE
+   HTML root: <section class="section" aria-labelledby="arch-title"> … </section>
+   ========================================================================== */
+
+/* Section wrapper */
+section[aria-labelledby="arch-title"]{
+  padding: clamp(28px, 5vw, 84px) clamp(18px, 5vw, 48px);
+  background:
+    radial-gradient(900px 560px at 8% 12%, rgba(108,99,255,.10), transparent 60%),
+    radial-gradient(800px 520px at 92% 90%, rgba(255,138,101,.08), transparent 60%),
+    linear-gradient(180deg, #0C0C10, #0C0C10);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+/* Local container (не конфликтует с .container в шапке) */
+section[aria-labelledby="arch-title"] .container{
+  max-width:1200px; margin:0 auto;
+  display:grid; grid-template-columns: 1.05fr 1fr;
+  gap: clamp(16px, 4vw, 48px);
+  align-items:start;
+}
+
+/* Left: architecture image frame */
+section[aria-labelledby="arch-title"] figure{
+  margin:0;
+  background:var(--panelSoft);
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  overflow:hidden;
+  box-shadow: 0 12px 36px rgba(0,0,0,.35);
+}
+section[aria-labelledby="arch-title"] .art{
+  display:block; width:100%; height:auto; object-fit:contain;
+  background:#0A0A0D;
+}
+section[aria-labelledby="arch-title"] figcaption{
+  display:none; /* при необходимости можно включить подпись */
+  padding:10px 12px; color:var(--muted); font-size:13px; border-top:1px solid var(--line);
+}
+
+/* Right: explanations */
+section[aria-labelledby="arch-title"] .content{display:grid; gap:16px}
+section[aria-labelledby="arch-title"] .title{
+  margin:0; font-size: clamp(22px, 3vw, 32px); line-height:1.2; letter-spacing:.2px;
+}
+section[aria-labelledby="arch-title"] .subtitle{
+  margin:0; color:var(--muted); font-size: clamp(15px, 1.5vw, 18px); line-height:1.55;
+}
+
+/* Cards (groups) */
+section[aria-labelledby="arch-title"] .group{
+  position:relative;
+  margin-top:6px;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:14px;
+  box-shadow: 0 12px 36px rgba(0,0,0,.35);
+}
+section[aria-labelledby="arch-title"] .group::after{
+  content:""; position:absolute; inset:auto 0 0 0; height:2px;
+  background:linear-gradient(90deg, var(--grad-a), var(--grad-b));
+  opacity:.35; border-radius:0 0 12px 12px;
+}
+section[aria-labelledby="arch-title"] .group h3{
+  margin:0 0 8px; font-size:13px; text-transform:uppercase; letter-spacing:.8px; color:#DFDFE6; opacity:.95;
+}
+
+/* Items */
+section[aria-labelledby="arch-title"] .list{display:grid; gap:10px}
+section[aria-labelledby="arch-title"] .item{
+  display:flex; gap:10px; align-items:flex-start;
+  padding:10px 12px; border-radius:10px;
+  background:rgba(255,255,255,.02);
+  border:1px solid rgba(255,255,255,.06);
+}
+section[aria-labelledby="arch-title"] .icon{
+  width:16px; height:16px; display:inline-flex; align-items:center; justify-content:center;
+  color:#EDEDF2; opacity:.9; margin-top:4px;
+}
+section[aria-labelledby="arch-title"] .item b{display:block; margin-bottom:2px}
+section[aria-labelledby="arch-title"] .item span{color:var(--muted)}
+
+/* Responsive */
+@media (max-width: 980px){
+  section[aria-labelledby="arch-title"] .container{grid-template-columns:1fr; gap:20px}
+}
+
+/* ==========================================================================
+   PRICING
+   HTML root: <section class="section" aria-labelledby="pricing-title"> … </section>
+   ========================================================================== */
+
+/* Section wrapper */
+section[aria-labelledby="pricing-title"]{
+  padding: clamp(28px, 5vw, 84px) clamp(18px, 5vw, 48px);
+  background:
+    radial-gradient(1000px 560px at 50% 0%, rgba(108,99,255,.10), transparent 60%),
+    radial-gradient(800px 520px at 10% 95%, rgba(255,138,101,.08), transparent 60%),
+    linear-gradient(180deg, #0C0C10, #0C0C10);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+
+/* Local container */
+section[aria-labelledby="pricing-title"] .container{
+  max-width:1200px; margin:0 auto;
+}
+
+/* Headings */
+section[aria-labelledby="pricing-title"] .title{
+  margin:0 0 8px; text-align:center;
+  font-size: clamp(24px, 3.1vw, 36px); line-height:1.2; letter-spacing:.2px;
+}
+section[aria-labelledby="pricing-title"] .subtitle{
+  margin:0 auto 26px; text-align:center; color:var(--muted);
+  font-size: clamp(15px, 1.5vw, 18px); line-height:1.55; max-width: 72ch;
+}
+
+/* Cards grid */
+section[aria-labelledby="pricing-title"] .grid{
+  margin-top: 18px;
+  display:grid; grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: clamp(12px, 2.2vw, 18px);
+}
+
+/* Card */
+section[aria-labelledby="pricing-title"] .card{
+  position:relative; background:var(--panelSoft);
+  border:1px solid var(--line); border-radius: var(--radius);
+  padding:16px; box-shadow: 0 12px 36px rgba(0,0,0,.35);
+  display:grid; gap:12px; align-content:start;
+  overflow:hidden;
+}
+section[aria-labelledby="pricing-title"] .card.highlight{
+  border-color: rgba(255,255,255,.18);
+  box-shadow: 0 18px 48px rgba(108,99,255,.30), inset 0 0 0 1px rgba(255,255,255,.06);
+}
+section[aria-labelledby="pricing-title"] .ribbon{
+  position:absolute; top:-28px; left:-20px; width:180px; height:100px;
+  background:linear-gradient(135deg, rgba(255,138,101,.55), rgba(108,99,255,.55));
+  filter: blur(22px); transform:rotate(-8deg);
+  opacity:.22; pointer-events:none;
+}
+
+/* Plan header */
+section[aria-labelledby="pricing-title"] .plan{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+section[aria-labelledby="pricing-title"] .plan h3{margin:0; font-size:18px}
+section[aria-labelledby="pricing-title"] .aud{color:var(--muted); font-size:13px}
+
+/* Price line */
+section[aria-labelledby="pricing-title"] .price{
+  display:flex; align-items:flex-end; gap:8px;
+}
+section[aria-labelledby="pricing-title"] .price .num{font-size:36px; font-weight:800; letter-spacing:.2px}
+section[aria-labelledby="pricing-title"] .price .per{color:var(--muted); font-size:14px}
+section[aria-labelledby="pricing-title"] .impl{margin-top:-6px; color:var(--muted); font-size:13px}
+
+/* Feature list */
+section[aria-labelledby="pricing-title"] .list{
+  margin:4px 0 0; padding:0; list-style:none; display:grid; gap:8px;
+}
+section[aria-labelledby="pricing-title"] .list li{
+  display:flex; gap:10px; align-items:flex-start;
+}
+section[aria-labelledby="pricing-title"] .tick{
+  margin-top:2px; flex:0 0 16px; height:16px; width:16px; border-radius:50%;
+  display:inline-flex; align-items:center; justify-content:center;
+  background: linear-gradient(135deg, var(--grad-a), var(--grad-b));
+  box-shadow: 0 0 0 1px rgba(255,255,255,.06) inset;
+}
+section[aria-labelledby="pricing-title"] .tick svg{display:block}
+section[aria-labelledby="pricing-title"] .muted{opacity:.85}
+
+/* CTA buttons (scoped) */
+section[aria-labelledby="pricing-title"] .cta{
+  margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;
+}
+section[aria-labelledby="pricing-title"] .btn{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:10px 14px; font-weight:700; font-size:14px; border-radius:10px;
+  text-decoration:none; transition:transform .15s ease, filter .15s ease, box-shadow .2s ease;
+}
+section[aria-labelledby="pricing-title"] .btn-primary{
+  background:linear-gradient(135deg, var(--grad-a), var(--grad-b));
+  color:#fff; box-shadow: 0 10px 26px rgba(108,99,255,.32), inset 0 0 0 1px rgba(255,255,255,.06);
+}
+section[aria-labelledby="pricing-title"] .btn-secondary{
+  color:#fff; background:transparent;
+  border:1.2px solid transparent;
+  background-image:
+    linear-gradient(var(--panel), var(--panel)),
+    linear-gradient(135deg, rgba(255,138,101,.9), rgba(108,99,255,.9));
+  background-origin:border-box; background-clip:padding-box, border-box;
+}
+section[aria-labelledby="pricing-title"] .btn:hover{transform:translateY(-1px)}
+
+/* Bottom note */
+section[aria-labelledby="pricing-title"] .note{
+  margin:16px auto 0; text-align:center; color:var(--muted); font-size:13px;
+  max-width: 80ch;
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  section[aria-labelledby="pricing-title"] .grid{grid-template-columns:1fr}
+  section[aria-labelledby="pricing-title"] .card.highlight{order:-1}
+}
+
+
+/* ==========================================================================
+   CTA
+   HTML root: <section class="cta-section" aria-labelledby="cta-title"> … </section>
+   ========================================================================== */
+
+/* Section wrapper */
+section[aria-labelledby="cta-title"]{
+  padding: clamp(36px, 6vw, 88px) clamp(18px, 5vw, 48px);
+  background:
+    radial-gradient(800px 520px at 90% 20%, rgba(255,138,101,.08), transparent 60%),
+    radial-gradient(900px 560px at 10% 80%, rgba(108,99,255,.10), transparent 60%),
+    linear-gradient(180deg, #0C0C10, #0C0C10);
+  border-top:1px solid var(--line);
+}
+
+/* Local container */
+section[aria-labelledby="cta-title"] .container{
+  max-width:1000px; margin:0 auto; text-align:center;
+}
+
+/* Headings */
+section[aria-labelledby="cta-title"] .cta-title{
+  font-size: clamp(26px, 3.2vw, 38px);
+  margin:0 0 12px;
+  font-weight:700;
+  text-align: center;
+}
+section[aria-labelledby="cta-title"] .cta-subtitle{
+  margin:0 auto clamp(20px, 3vw, 36px);
+  color:var(--muted);
+  font-size: clamp(15px, 1.5vw, 18px);
+  max-width: 65ch;
+  line-height:1.55;
+  text-align: center;
+}
+
+/* Buttons (scoped to avoid global .btn conflicts) */
+section[aria-labelledby="cta-title"] .cta-buttons{
+  display:flex; flex-wrap:wrap; gap:14px; justify-content:center;
+}
+section[aria-labelledby="cta-title"] .btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:12px 20px;
+  font-weight:700; font-size:15px;
+  border-radius:10px;
+  transition:transform .15s ease, filter .15s ease, box-shadow .2s ease;
+}
+section[aria-labelledby="cta-title"] .btn-primary{
+  background:linear-gradient(135deg, var(--grad-a), var(--grad-b));
+  color:#fff;
+  box-shadow: 0 10px 26px rgba(108,99,255,.32), inset 0 0 0 1px rgba(255,255,255,.06);
+}
+section[aria-labelledby="cta-title"] .btn-secondary{
+  color:#fff; background:transparent;
+  border:1.2px solid transparent;
+  background-image:
+    linear-gradient(var(--panel), var(--panel)),
+    linear-gradient(135deg, rgba(255,138,101,.9), rgba(108,99,255,.9));
+  background-origin:border-box; background-clip:padding-box, border-box;
+}
+section[aria-labelledby="cta-title"] .btn:hover{transform:translateY(-1px)}
+
+/* ==========================================================================
+   FOOTER
+   HTML root: <footer> … </footer>
+   ========================================================================== */
+
+footer{
+  background: linear-gradient(180deg, #0C0C10, #0B0B0E);
+  border-top:1px solid var(--line);
+  padding: clamp(28px, 4vw, 48px) clamp(18px, 5vw, 48px) 20px;
+}
+
+footer .footer-container{
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: clamp(18px, 3vw, 48px);
+}
+
+footer .logo{
+  font-size: 20px;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--grad-a), var(--grad-b));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+}
+
+footer .desc{
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 40ch;
+}
+
+footer .footer-title{
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #DFDFE6;
+}
+
+footer .footer-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+}
+
+footer .footer-list a{
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+footer .footer-list a:hover{
+  color: #fff;
+}
+
+footer .footer-bottom{
+  max-width: 1200px;
+  margin: 32px auto 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media(max-width: 780px){
+  footer .footer-container{
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* --- Modal hardening / centering --- */
+#demo-modal-overlay{
+  position: fixed;
+  top:0; right:0; bottom:0; left:0; /* fallback вместо inset */
+  background: rgba(0,0,0,.55);
+  display: none;
+  z-index: 990;           /* выше шапки */
+  backdrop-filter: blur(2px);
+}
+
+#demo-modal{
+  position: fixed;
+  top:0; right:0; bottom:0; left:0; /* fallback вместо inset */
+  display: none;            /* по умолчанию скрыто */
+  z-index: 1000;            /* выше overlay */
+  padding: 24px;
+  /* Надёжное центрирование независимо от сторонних стилей */
+  display: none;
+}
+
+#demo-modal.is-open{
+  display: grid;            /* grid проще и надёжнее для центрирования */
+  place-items: center;      /* центр по вертикали/горизонтали */
+}
+
+#demo-modal .panel{
+  max-width: 720px;
+  width: 92vw;
+}
+
+body.modal-open{
+  overflow: hidden;         /* отключаем прокрутку фона, чтобы не «уползало» */
+}
+
+/* На всякий случай скрываем элементы с [hidden] принудительно */
+#demo-modal[hidden],
+#demo-modal-overlay[hidden]{
+  display: none !important;
+}
+
